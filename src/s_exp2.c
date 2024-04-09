@@ -36,13 +36,13 @@
 #define	TBLSIZE	(1 << TBLBITS)
 
 static const double
-    huge     = 0x1p1000,
-    redux    = 0x1.8p52 / TBLSIZE,
-    P1	     = 0x1.62e42fefa39efp-1,
-    P2	     = 0x1.ebfbdff82c575p-3,
-    P3	     = 0x1.c6b08d704a0a6p-5,
-    P4	     = 0x1.3b2ab88f70400p-7,
-    P5	     = 0x1.5d88003875c74p-10;
+	huge     = 0x1p1000,
+	redux    = 0x1.8p52 / TBLSIZE,
+	P1	     = 0x1.62e42fefa39efp-1,
+	P2	     = 0x1.ebfbdff82c575p-3,
+	P3	     = 0x1.c6b08d704a0a6p-5,
+	P4	     = 0x1.3b2ab88f70400p-7,
+	P5	     = 0x1.5d88003875c74p-10;
 
 static volatile double twom1000 = 0x1p-1000;
 

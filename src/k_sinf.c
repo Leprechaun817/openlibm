@@ -19,7 +19,7 @@
 //__FBSDID("$FreeBSD: src/lib/msun/src/k_sinf.c,v 1.16 2009/06/03 08:16:34 ed Exp $");
 #endif
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -40,9 +40,9 @@ __kernel_sindf(double x)
 	double r, s, w, z;
 
 	/* Try to optimize for parallel evaluation as in k_tanf.c. */
-	z = x*x;
-	w = z*z;
-	r = S3+z*S4;
-	s = z*x;
-	return (x + s*(S1+z*S2)) + s*w*r;
+	z = x * x;
+	w = z * z;
+	r = S3 + z * S4;
+	s = z * x;
+	return (x + s * (S1 + z * S2)) + s * w * r;
 }

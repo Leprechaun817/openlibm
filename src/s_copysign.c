@@ -19,7 +19,7 @@
  * with the sign bit of y.
  */
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -27,8 +27,24 @@ OLM_DLLEXPORT double
 copysign(double x, double y)
 {
 	u_int32_t hx,hy;
-	GET_HIGH_WORD(hx,x);
-	GET_HIGH_WORD(hy,y);
-	SET_HIGH_WORD(x,(hx&0x7fffffff)|(hy&0x80000000));
+	do {
+		ieee_double_shape_type gh_u; 
+		gh_u.value = (x); 
+		(hx) = gh_u.parts.msw;
+	} while (0);
+
+	do {
+		ieee_double_shape_type gh_u; 
+		gh_u.value = (y); 
+		(hy) = gh_u.parts.msw;
+	} while (0);
+
+	do {
+		ieee_double_shape_type sh_u; 
+		sh_u.value = (x); 
+		sh_u.parts.msw = ((hx & 0x7fffffff) | (hy & 0x80000000)); 
+		(x) = sh_u.value;
+	} while (0);
+
         return x;
 }

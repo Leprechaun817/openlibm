@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{06274aeb-3cc2-4d03-b79a-a6a197ba4c83}</ProjectGuid>
+    <RootNamespace>OpenlibmAMG</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;OPENLIBMAMG_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;OPENLIBMAMG_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;OPENLIBMAMG_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;OPENLIBMAMG_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\amd64\bsd_asm.h" />
+    <ClInclude Include="..\amd64\bsd_fpu.h" />
+    <ClInclude Include="..\amd64\bsd_ieeefp.h" />
+    <ClInclude Include="..\bsdsrc\mathimpl.h" />
+    <ClInclude Include="..\i387\bsd_asm.h" />
+    <ClInclude Include="..\i387\bsd_ieeefp.h" />
+    <ClInclude Include="..\i387\bsd_npx.h" />
+    <ClInclude Include="..\i387\osx_asm.h" />
+    <ClInclude Include="..\include\openlibm.h" />
+    <ClInclude Include="..\include\openlibm_complex.h" />
+    <ClInclude Include="..\include\openlibm_defs.h" />
+    <ClInclude Include="..\include\openlibm_fenv.h" />
+    <ClInclude Include="..\include\openlibm_fenv_amd64.h" />
+    <ClInclude Include="..\include\openlibm_fenv_arm.h" />
+    <ClInclude Include="..\include\openlibm_fenv_i387.h" />
+    <ClInclude Include="..\include\openlibm_fenv_loongarch64.h" />
+    <ClInclude Include="..\include\openlibm_fenv_mips.h" />
+    <ClInclude Include="..\include\openlibm_fenv_powerpc.h" />
+    <ClInclude Include="..\include\openlibm_fenv_riscv.h" />
+    <ClInclude Include="..\include\openlibm_fenv_s390.h" />
+    <ClInclude Include="..\include\openlibm_math.h" />
+    <ClInclude Include="..\ld128\e_rem_pio2l.h" />
+    <ClInclude Include="..\ld128\invtrig.h" />
+    <ClInclude Include="..\ld80\e_rem_pio2l.h" />
+    <ClInclude Include="..\ld80\invtrig.h" />
+    <ClInclude Include="..\mips\fenv-softfloat.h" />
+    <ClInclude Include="..\src\aarch64_fpmath.h" />
+    <ClInclude Include="..\src\amd64_fpmath.h" />
+    <ClInclude Include="..\src\bsd_cdefs.h" />
+    <ClInclude Include="..\src\cdefs-compat.h" />
+    <ClInclude Include="..\src\fpmath.h" />
+    <ClInclude Include="..\src\i386_fpmath.h" />
+    <ClInclude Include="..\src\k_log.h" />
+    <ClInclude Include="..\src\k_logf.h" />
+    <ClInclude Include="..\src\loongarch64_fpmath.h" />
+    <ClInclude Include="..\src\math_private.h" />
+    <ClInclude Include="..\src\math_private_openbsd.h" />
+    <ClInclude Include="..\src\mips_fpmath.h" />
+    <ClInclude Include="..\src\powerpc_fpmath.h" />
+    <ClInclude Include="..\src\riscv_fpmath.h" />
+    <ClInclude Include="..\src\s390_fpmath.h" />
+    <ClInclude Include="..\src\types-compat.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\aarch64\fenv.c" />
+    <ClCompile Include="..\amd64\fenv.c" />
+    <ClCompile Include="..\arm\fenv.c" />
+    <ClCompile Include="..\bsdsrc\b_exp.c" />
+    <ClCompile Include="..\bsdsrc\b_log.c" />
+    <ClCompile Include="..\bsdsrc\b_tgamma.c" />
+    <ClCompile Include="..\i387\fenv.c" />
+    <ClCompile Include="..\i387\invtrig.c" />
+    <ClCompile Include="..\ld128\e_acoshl.c" />
+    <ClCompile Include="..\ld128\e_atanhl.c" />
+    <ClCompile Include="..\ld128\e_coshl.c" />
+    <ClCompile Include="..\ld128\e_expl.c" />
+    <ClCompile Include="..\ld128\e_fmodl.c" />
+    <ClCompile Include="..\ld128\e_hypotl.c" />
+    <ClCompile Include="..\ld128\e_lgammal_r.c" />
+    <ClCompile Include="..\ld128\e_log10l.c" />
+    <ClCompile Include="..\ld128\e_log2l.c" />
+    <ClCompile Include="..\ld128\e_logl.c" />
+    <ClCompile Include="..\ld128\e_powl.c" />
+    <ClCompile Include="..\ld128\e_sinhl.c" />
+    <ClCompile Include="..\ld128\e_tgammal.c" />
+    <ClCompile Include="..\ld128\invtrig.c" />
+    <ClCompile Include="..\ld128\k_cosl.c" />
+    <ClCompile Include="..\ld128\k_sinl.c" />
+    <ClCompile Include="..\ld128\k_tanl.c" />
+    <ClCompile Include="..\ld128\s_asinhl.c" />
+    <ClCompile Include="..\ld128\s_ceill.c" />
+    <ClCompile Include="..\ld128\s_erfl.c" />
+    <ClCompile Include="..\ld128\s_exp2l.c" />
+    <ClCompile Include="..\ld128\s_expm1l.c" />
+    <ClCompile Include="..\ld128\s_floorl.c" />
+    <ClCompile Include="..\ld128\s_log1pl.c" />
+    <ClCompile Include="..\ld128\s_modfl.c" />
+    <ClCompile Include="..\ld128\s_nanl.c" />
+    <ClCompile Include="..\ld128\s_nextafterl.c" />
+    <ClCompile Include="..\ld128\s_nexttoward.c" />
+    <ClCompile Include="..\ld128\s_nexttowardf.c" />
+    <ClCompile Include="..\ld128\s_remquol.c" />
+    <ClCompile Include="..\ld128\s_tanhl.c" />
+    <ClCompile Include="..\ld128\s_truncl.c" />
+    <ClCompile Include="..\ld80\e_acoshl.c" />
+    <ClCompile Include="..\ld80\e_atanhl.c" />
+    <ClCompile Include="..\ld80\e_coshl.c" />
+    <ClCompile Include="..\ld80\e_expl.c" />
+    <ClCompile Include="..\ld80\e_fmodl.c" />
+    <ClCompile Include="..\ld80\e_hypotl.c" />
+    <ClCompile Include="..\ld80\e_lgammal_r.c" />
+    <ClCompile Include="..\ld80\e_log10l.c" />
+    <ClCompile Include="..\ld80\e_log2l.c" />
+    <ClCompile Include="..\ld80\e_logl.c" />
+    <ClCompile Include="..\ld80\e_powl.c" />
+    <ClCompile Include="..\ld80\e_sinhl.c" />
+    <ClCompile Include="..\ld80\e_tgammal.c" />
+    <ClCompile Include="..\ld80\invtrig.c" />
+    <ClCompile Include="..\ld80\k_cosl.c" />
+    <ClCompile Include="..\ld80\k_sinl.c" />
+    <ClCompile Include="..\ld80\k_tanl.c" />
+    <ClCompile Include="..\ld80\s_asinhl.c" />
+    <ClCompile Include="..\ld80\s_ceill.c" />
+    <ClCompile Include="..\ld80\s_erfl.c" />
+    <ClCompile Include="..\ld80\s_exp2l.c" />
+    <ClCompile Include="..\ld80\s_expm1l.c" />
+    <ClCompile Include="..\ld80\s_floorl.c" />
+    <ClCompile Include="..\ld80\s_log1pl.c" />
+    <ClCompile Include="..\ld80\s_modfl.c" />
+    <ClCompile Include="..\ld80\s_nanl.c" />
+    <ClCompile Include="..\ld80\s_nextafterl.c" />
+    <ClCompile Include="..\ld80\s_nexttoward.c" />
+    <ClCompile Include="..\ld80\s_nexttowardf.c" />
+    <ClCompile Include="..\ld80\s_remquol.c" />
+    <ClCompile Include="..\ld80\s_tanhl.c" />
+    <ClCompile Include="..\ld80\s_truncl.c" />
+    <ClCompile Include="..\loongarch64\fenv.c" />
+    <ClCompile Include="..\mips\fenv.c" />
+    <ClCompile Include="..\powerpc\fenv.c" />
+    <ClCompile Include="..\riscv64\fenv.c" />
+    <ClCompile Include="..\s390\fenv.c" />
+    <ClCompile Include="..\src\common.c" />
+    <ClCompile Include="..\src\e_acos.c" />
+    <ClCompile Include="..\src\e_acosf.c" />
+    <ClCompile Include="..\src\e_acosh.c" />
+    <ClCompile Include="..\src\e_acoshf.c" />
+    <ClCompile Include="..\src\e_acosl.c" />
+    <ClCompile Include="..\src\e_asin.c" />
+    <ClCompile Include="..\src\e_asinf.c" />
+    <ClCompile Include="..\src\e_asinl.c" />
+    <ClCompile Include="..\src\e_atan2.c" />
+    <ClCompile Include="..\src\e_atan2f.c" />
+    <ClCompile Include="..\src\e_atan2l.c" />
+    <ClCompile Include="..\src\e_atanh.c" />
+    <ClCompile Include="..\src\e_atanhf.c" />
+    <ClCompile Include="..\src\e_cosh.c" />
+    <ClCompile Include="..\src\e_coshf.c" />
+    <ClCompile Include="..\src\e_exp.c" />
+    <ClCompile Include="..\src\e_expf.c" />
+    <ClCompile Include="..\src\e_fmod.c" />
+    <ClCompile Include="..\src\e_fmodf.c" />
+    <ClCompile Include="..\src\e_fmodl.c" />
+    <ClCompile Include="..\src\e_hypot.c" />
+    <ClCompile Include="..\src\e_hypotf.c" />
+    <ClCompile Include="..\src\e_hypotl.c" />
+    <ClCompile Include="..\src\e_j0.c" />
+    <ClCompile Include="..\src\e_j0f.c" />
+    <ClCompile Include="..\src\e_j1.c" />
+    <ClCompile Include="..\src\e_j1f.c" />
+    <ClCompile Include="..\src\e_jn.c" />
+    <ClCompile Include="..\src\e_jnf.c" />
+    <ClCompile Include="..\src\e_lgamma.c" />
+    <ClCompile Include="..\src\e_lgammaf.c" />
+    <ClCompile Include="..\src\e_lgammaf_r.c" />
+    <ClCompile Include="..\src\e_lgammal.c" />
+    <ClCompile Include="..\src\e_lgamma_r.c" />
+    <ClCompile Include="..\src\e_log.c" />
+    <ClCompile Include="..\src\e_log10.c" />
+    <ClCompile Include="..\src\e_log10f.c" />
+    <ClCompile Include="..\src\e_log2.c" />
+    <ClCompile Include="..\src\e_log2f.c" />
+    <ClCompile Include="..\src\e_logf.c" />
+    <ClCompile Include="..\src\e_pow.c" />
+    <ClCompile Include="..\src\e_powf.c" />
+    <ClCompile Include="..\src\e_remainder.c" />
+    <ClCompile Include="..\src\e_remainderf.c" />
+    <ClCompile Include="..\src\e_remainderl.c" />
+    <ClCompile Include="..\src\e_rem_pio2.c" />
+    <ClCompile Include="..\src\e_rem_pio2f.c" />
+    <ClCompile Include="..\src\e_sinh.c" />
+    <ClCompile Include="..\src\e_sinhf.c" />
+    <ClCompile Include="..\src\e_sqrt.c" />
+    <ClCompile Include="..\src\e_sqrtf.c" />
+    <ClCompile Include="..\src\e_sqrtl.c" />
+    <ClCompile Include="..\src\k_cos.c" />
+    <ClCompile Include="..\src\k_cosf.c" />
+    <ClCompile Include="..\src\k_exp.c" />
+    <ClCompile Include="..\src\k_expf.c" />
+    <ClCompile Include="..\src\k_rem_pio2.c" />
+    <ClCompile Include="..\src\k_sin.c" />
+    <ClCompile Include="..\src\k_sinf.c" />
+    <ClCompile Include="..\src\k_tan.c" />
+    <ClCompile Include="..\src\k_tanf.c" />
+    <ClCompile Include="..\src\polevll.c" />
+    <ClCompile Include="..\src\s_asinh.c" />
+    <ClCompile Include="..\src\s_asinhf.c" />
+    <ClCompile Include="..\src\s_atan.c" />
+    <ClCompile Include="..\src\s_atanf.c" />
+    <ClCompile Include="..\src\s_atanl.c" />
+    <ClCompile Include="..\src\s_cabs.c" />
+    <ClCompile Include="..\src\s_cabsf.c" />
+    <ClCompile Include="..\src\s_cabsl.c" />
+    <ClCompile Include="..\src\s_cacos.c" />
+    <ClCompile Include="..\src\s_cacosf.c" />
+    <ClCompile Include="..\src\s_cacosh.c" />
+    <ClCompile Include="..\src\s_cacoshf.c" />
+    <ClCompile Include="..\src\s_cacoshl.c" />
+    <ClCompile Include="..\src\s_cacosl.c" />
+    <ClCompile Include="..\src\s_carg.c" />
+    <ClCompile Include="..\src\s_cargf.c" />
+    <ClCompile Include="..\src\s_cargl.c" />
+    <ClCompile Include="..\src\s_casin.c" />
+    <ClCompile Include="..\src\s_casinf.c" />
+    <ClCompile Include="..\src\s_casinh.c" />
+    <ClCompile Include="..\src\s_casinhf.c" />
+    <ClCompile Include="..\src\s_casinhl.c" />
+    <ClCompile Include="..\src\s_casinl.c" />
+    <ClCompile Include="..\src\s_catan.c" />
+    <ClCompile Include="..\src\s_catanf.c" />
+    <ClCompile Include="..\src\s_catanh.c" />
+    <ClCompile Include="..\src\s_catanhf.c" />
+    <ClCompile Include="..\src\s_catanhl.c" />
+    <ClCompile Include="..\src\s_catanl.c" />
+    <ClCompile Include="..\src\s_cbrt.c" />
+    <ClCompile Include="..\src\s_cbrtf.c" />
+    <ClCompile Include="..\src\s_cbrtl.c" />
+    <ClCompile Include="..\src\s_ccos.c" />
+    <ClCompile Include="..\src\s_ccosf.c" />
+    <ClCompile Include="..\src\s_ccosh.c" />
+    <ClCompile Include="..\src\s_ccoshf.c" />
+    <ClCompile Include="..\src\s_ccoshl.c" />
+    <ClCompile Include="..\src\s_ccosl.c" />
+    <ClCompile Include="..\src\s_ceil.c" />
+    <ClCompile Include="..\src\s_ceilf.c" />
+    <ClCompile Include="..\src\s_ceill.c" />
+    <ClCompile Include="..\src\s_cexp.c" />
+    <ClCompile Include="..\src\s_cexpf.c" />
+    <ClCompile Include="..\src\s_cexpl.c" />
+    <ClCompile Include="..\src\s_cimag.c" />
+    <ClCompile Include="..\src\s_cimagf.c" />
+    <ClCompile Include="..\src\s_cimagl.c" />
+    <ClCompile Include="..\src\s_clog.c" />
+    <ClCompile Include="..\src\s_clogf.c" />
+    <ClCompile Include="..\src\s_clogl.c" />
+    <ClCompile Include="..\src\s_conj.c" />
+    <ClCompile Include="..\src\s_conjf.c" />
+    <ClCompile Include="..\src\s_conjl.c" />
+    <ClCompile Include="..\src\s_copysign.c" />
+    <ClCompile Include="..\src\s_copysignf.c" />
+    <ClCompile Include="..\src\s_copysignl.c" />
+    <ClCompile Include="..\src\s_cos.c" />
+    <ClCompile Include="..\src\s_cosf.c" />
+    <ClCompile Include="..\src\s_cosl.c" />
+    <ClCompile Include="..\src\s_cpow.c" />
+    <ClCompile Include="..\src\s_cpowf.c" />
+    <ClCompile Include="..\src\s_cpowl.c" />
+    <ClCompile Include="..\src\s_cproj.c" />
+    <ClCompile Include="..\src\s_cprojf.c" />
+    <ClCompile Include="..\src\s_cprojl.c" />
+    <ClCompile Include="..\src\s_creal.c" />
+    <ClCompile Include="..\src\s_crealf.c" />
+    <ClCompile Include="..\src\s_creall.c" />
+    <ClCompile Include="..\src\s_csin.c" />
+    <ClCompile Include="..\src\s_csinf.c" />
+    <ClCompile Include="..\src\s_csinh.c" />
+    <ClCompile Include="..\src\s_csinhf.c" />
+    <ClCompile Include="..\src\s_csinhl.c" />
+    <ClCompile Include="..\src\s_csinl.c" />
+    <ClCompile Include="..\src\s_csqrt.c" />
+    <ClCompile Include="..\src\s_csqrtf.c" />
+    <ClCompile Include="..\src\s_csqrtl.c" />
+    <ClCompile Include="..\src\s_ctan.c" />
+    <ClCompile Include="..\src\s_ctanf.c" />
+    <ClCompile Include="..\src\s_ctanh.c" />
+    <ClCompile Include="..\src\s_ctanhf.c" />
+    <ClCompile Include="..\src\s_ctanhl.c" />
+    <ClCompile Include="..\src\s_ctanl.c" />
+    <ClCompile Include="..\src\s_erf.c" />
+    <ClCompile Include="..\src\s_erff.c" />
+    <ClCompile Include="..\src\s_exp2.c" />
+    <ClCompile Include="..\src\s_exp2f.c" />
+    <ClCompile Include="..\src\s_expm1.c" />
+    <ClCompile Include="..\src\s_expm1f.c" />
+    <ClCompile Include="..\src\s_fabs.c" />
+    <ClCompile Include="..\src\s_fabsf.c" />
+    <ClCompile Include="..\src\s_fabsl.c" />
+    <ClCompile Include="..\src\s_fdim.c" />
+    <ClCompile Include="..\src\s_floor.c" />
+    <ClCompile Include="..\src\s_floorf.c" />
+    <ClCompile Include="..\src\s_floorl.c" />
+    <ClCompile Include="..\src\s_fma.c" />
+    <ClCompile Include="..\src\s_fmaf.c" />
+    <ClCompile Include="..\src\s_fmal.c" />
+    <ClCompile Include="..\src\s_fmax.c" />
+    <ClCompile Include="..\src\s_fmaxf.c" />
+    <ClCompile Include="..\src\s_fmaxl.c" />
+    <ClCompile Include="..\src\s_fmin.c" />
+    <ClCompile Include="..\src\s_fminf.c" />
+    <ClCompile Include="..\src\s_fminl.c" />
+    <ClCompile Include="..\src\s_fpclassify.c" />
+    <ClCompile Include="..\src\s_frexp.c" />
+    <ClCompile Include="..\src\s_frexpf.c" />
+    <ClCompile Include="..\src\s_frexpl.c" />
+    <ClCompile Include="..\src\s_ilogb.c" />
+    <ClCompile Include="..\src\s_ilogbf.c" />
+    <ClCompile Include="..\src\s_ilogbl.c" />
+    <ClCompile Include="..\src\s_isfinite.c" />
+    <ClCompile Include="..\src\s_isinf.c" />
+    <ClCompile Include="..\src\s_isnan.c" />
+    <ClCompile Include="..\src\s_isnormal.c" />
+    <ClCompile Include="..\src\s_llrint.c" />
+    <ClCompile Include="..\src\s_llrintf.c" />
+    <ClCompile Include="..\src\s_llrintl.c" />
+    <ClCompile Include="..\src\s_llround.c" />
+    <ClCompile Include="..\src\s_llroundf.c" />
+    <ClCompile Include="..\src\s_llroundl.c" />
+    <ClCompile Include="..\src\s_log1p.c" />
+    <ClCompile Include="..\src\s_log1pf.c" />
+    <ClCompile Include="..\src\s_logb.c" />
+    <ClCompile Include="..\src\s_logbf.c" />
+    <ClCompile Include="..\src\s_logbl.c" />
+    <ClCompile Include="..\src\s_lrint.c" />
+    <ClCompile Include="..\src\s_lrintf.c" />
+    <ClCompile Include="..\src\s_lrintl.c" />
+    <ClCompile Include="..\src\s_lround.c" />
+    <ClCompile Include="..\src\s_lroundf.c" />
+    <ClCompile Include="..\src\s_lroundl.c" />
+    <ClCompile Include="..\src\s_modf.c" />
+    <ClCompile Include="..\src\s_modff.c" />
+    <ClCompile Include="..\src\s_modfl.c" />
+    <ClCompile Include="..\src\s_nan.c" />
+    <ClCompile Include="..\src\s_nearbyint.c" />
+    <ClCompile Include="..\src\s_nextafter.c" />
+    <ClCompile Include="..\src\s_nextafterf.c" />
+    <ClCompile Include="..\src\s_nextafterl.c" />
+    <ClCompile Include="..\src\s_nexttoward.c" />
+    <ClCompile Include="..\src\s_nexttowardf.c" />
+    <ClCompile Include="..\src\s_remquo.c" />
+    <ClCompile Include="..\src\s_remquof.c" />
+    <ClCompile Include="..\src\s_remquol.c" />
+    <ClCompile Include="..\src\s_rint.c" />
+    <ClCompile Include="..\src\s_rintf.c" />
+    <ClCompile Include="..\src\s_rintl.c" />
+    <ClCompile Include="..\src\s_round.c" />
+    <ClCompile Include="..\src\s_roundf.c" />
+    <ClCompile Include="..\src\s_roundl.c" />
+    <ClCompile Include="..\src\s_scalbln.c" />
+    <ClCompile Include="..\src\s_scalbn.c" />
+    <ClCompile Include="..\src\s_scalbnf.c" />
+    <ClCompile Include="..\src\s_scalbnl.c" />
+    <ClCompile Include="..\src\s_signbit.c" />
+    <ClCompile Include="..\src\s_signgam.c" />
+    <ClCompile Include="..\src\s_sin.c" />
+    <ClCompile Include="..\src\s_sincos.c" />
+    <ClCompile Include="..\src\s_sincosf.c" />
+    <ClCompile Include="..\src\s_sincosl.c" />
+    <ClCompile Include="..\src\s_sinf.c" />
+    <ClCompile Include="..\src\s_sinl.c" />
+    <ClCompile Include="..\src\s_tan.c" />
+    <ClCompile Include="..\src\s_tanf.c" />
+    <ClCompile Include="..\src\s_tanh.c" />
+    <ClCompile Include="..\src\s_tanhf.c" />
+    <ClCompile Include="..\src\s_tanl.c" />
+    <ClCompile Include="..\src\s_tgammaf.c" />
+    <ClCompile Include="..\src\s_trunc.c" />
+    <ClCompile Include="..\src\s_truncf.c" />
+    <ClCompile Include="..\src\s_truncl.c" />
+    <ClCompile Include="..\src\w_cabs.c" />
+    <ClCompile Include="..\src\w_cabsf.c" />
+    <ClCompile Include="..\src\w_cabsl.c" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\amd64\e_fmod.S" />
+    <None Include="..\amd64\e_fmodf.S" />
+    <None Include="..\amd64\e_fmodl.S" />
+    <None Include="..\amd64\e_remainder.S" />
+    <None Include="..\amd64\e_remainderf.S" />
+    <None Include="..\amd64\e_remainderl.S" />
+    <None Include="..\amd64\e_sqrt.S" />
+    <None Include="..\amd64\e_sqrtf.S" />
+    <None Include="..\amd64\e_sqrtl.S" />
+    <None Include="..\amd64\s_llrint.S" />
+    <None Include="..\amd64\s_llrintf.S" />
+    <None Include="..\amd64\s_llrintl.S" />
+    <None Include="..\amd64\s_logbl.S" />
+    <None Include="..\amd64\s_lrint.S" />
+    <None Include="..\amd64\s_lrintf.S" />
+    <None Include="..\amd64\s_lrintl.S" />
+    <None Include="..\amd64\s_remquo.S" />
+    <None Include="..\amd64\s_remquof.S" />
+    <None Include="..\amd64\s_remquol.S" />
+    <None Include="..\amd64\s_rintl.S" />
+    <None Include="..\amd64\s_scalbn.S" />
+    <None Include="..\amd64\s_scalbnf.S" />
+    <None Include="..\amd64\s_scalbnl.S" />
+    <None Include="..\i387\e_exp.S" />
+    <None Include="..\i387\e_fmod.S" />
+    <None Include="..\i387\e_log.S" />
+    <None Include="..\i387\e_log10.S" />
+    <None Include="..\i387\e_log10f.S" />
+    <None Include="..\i387\e_logf.S" />
+    <None Include="..\i387\e_remainder.S" />
+    <None Include="..\i387\e_remainderf.S" />
+    <None Include="..\i387\e_remainderl.S" />
+    <None Include="..\i387\e_sqrt.S" />
+    <None Include="..\i387\e_sqrtf.S" />
+    <None Include="..\i387\e_sqrtl.S" />
+    <None Include="..\i387\s_ceil.S" />
+    <None Include="..\i387\s_ceilf.S" />
+    <None Include="..\i387\s_ceill.S" />
+    <None Include="..\i387\s_copysign.S" />
+    <None Include="..\i387\s_copysignf.S" />
+    <None Include="..\i387\s_copysignl.S" />
+    <None Include="..\i387\s_cos.S" />
+    <None Include="..\i387\s_floor.S" />
+    <None Include="..\i387\s_floorf.S" />
+    <None Include="..\i387\s_floorl.S" />
+    <None Include="..\i387\s_llrint.S" />
+    <None Include="..\i387\s_llrintf.S" />
+    <None Include="..\i387\s_llrintl.S" />
+    <None Include="..\i387\s_logb.S" />
+    <None Include="..\i387\s_logbf.S" />
+    <None Include="..\i387\s_logbl.S" />
+    <None Include="..\i387\s_lrint.S" />
+    <None Include="..\i387\s_lrintf.S" />
+    <None Include="..\i387\s_lrintl.S" />
+    <None Include="..\i387\s_remquo.S" />
+    <None Include="..\i387\s_remquof.S" />
+    <None Include="..\i387\s_remquol.S" />
+    <None Include="..\i387\s_rint.S" />
+    <None Include="..\i387\s_rintf.S" />
+    <None Include="..\i387\s_rintl.S" />
+    <None Include="..\i387\s_scalbn.S" />
+    <None Include="..\i387\s_scalbnf.S" />
+    <None Include="..\i387\s_scalbnl.S" />
+    <None Include="..\i387\s_sin.S" />
+    <None Include="..\i387\s_tan.S" />
+    <None Include="..\i387\s_trunc.S" />
+    <None Include="..\i387\s_truncf.S" />
+    <None Include="..\i387\s_truncl.S" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

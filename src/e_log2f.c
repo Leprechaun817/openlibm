@@ -16,7 +16,7 @@
  * Float version of e_log2.c.  See the latter for most comments.
  */
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 #include "k_logf.h"
@@ -34,32 +34,64 @@ static const float zero   =  0.0;
 OLM_DLLEXPORT float
 __ieee754_log2f(float x)
 {
-	float f,hfsq,hi,lo,r,y;
-	int32_t i,k,hx;
+	float f, hfsq, hi, lo, r, y;
+	int32_t i, k, hx;
 
-	GET_FLOAT_WORD(hx,x);
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (x); 
+		(hx) = gf_u.word;
+	} while (0);
 
-	k=0;
+	k = 0;
 	if (hx < 0x00800000) {			/* x < 2**-126  */
-	    if ((hx&0x7fffffff)==0)
-		return -two25/zero;		/* log(+-0)=-inf */
-	    if (hx<0) return (x-x)/zero;	/* log(-#) = NaN */
-	    k -= 25; x *= two25; /* subnormal number, scale up x */
-	    GET_FLOAT_WORD(hx,x);
+		if ((hx & 0x7fffffff) == 0) {
+			return -two25 / zero;		/* log(+-0)=-inf */
+		}
+		
+		if (hx < 0) {
+			return (x - x) / zero;	/* log(-#) = NaN */
+		}
+	    
+		k -= 25; 
+		x *= two25; /* subnormal number, scale up x */
+		
+		do {
+			ieee_float_shape_type gf_u; 
+			gf_u.value = (x); 
+			(hx) = gf_u.word;
+		} while (0);
 	}
-	if (hx >= 0x7f800000) return x+x;
-	if (hx == 0x3f800000)
-	    return zero;			/* log(1) = +0 */
-	k += (hx>>23)-127;
+
+	if (hx >= 0x7f800000) {
+		return x + x;
+	}
+
+	if (hx == 0x3f800000) {
+		return zero;			/* log(1) = +0 */
+	}
+
+	k += (hx >> 23) - 127;
 	hx &= 0x007fffff;
-	i = (hx+(0x4afb0d))&0x800000;
-	SET_FLOAT_WORD(x,hx|(i^0x3f800000));	/* normalize x or x/2 */
-	k += (i>>23);
+	i = (hx + (0x4afb0d)) & 0x800000;
+
+	do {
+		ieee_float_shape_type sf_u; 
+		sf_u.word = (hx | (i ^ 0x3f800000)); 
+		(x) = sf_u.value;
+	} while (0);	/* normalize x or x/2 */
+
+	k += (i >> 23);
 	y = (float)k;
 	f = x - (float)1.0;
-	hfsq = (float)0.5*f*f;
+	
+	hfsq = (float)0.5 * f * f;
 	r = k_log1pf(f);
 
+	//ADDITION
+	//Note: This may not be necessary or even possible when porting this over to C#.
+	//There is no difference in the size of float that would make this calculation even
+	//necessary.
 	/*
 	 * We no longer need to avoid falling into the multi-precision
 	 * calculations due to compiler bugs breaking Dekker's theorem.
@@ -78,8 +110,20 @@ __ieee754_log2f(float x)
 		return (r - hfsq + f) * ((float_t)ivln2lo + ivln2hi) + y;
 
 	hi = f - hfsq;
-	GET_FLOAT_WORD(hx,hi);
-	SET_FLOAT_WORD(hi,hx&0xfffff000);
+
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (hi); 
+		(hx) = gf_u.word;
+	} while (0);
+
+	do {
+		ieee_float_shape_type sf_u; 
+		sf_u.word = (hx & 0xfffff000); 
+		(hi) = sf_u.value;
+	} while (0);
+
 	lo = (f - hi) - hfsq + r;
-	return (lo+hi)*ivln2lo + lo*ivln2hi + hi*ivln2hi + y;
+
+	return (lo + hi) * ivln2lo + lo * ivln2hi + hi * ivln2hi + y;
 }

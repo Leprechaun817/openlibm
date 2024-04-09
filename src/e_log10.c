@@ -23,7 +23,7 @@
  */
 
 #include <float.h>
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 #include "k_log.h"
@@ -40,40 +40,77 @@ static const double zero   =  0.0;
 OLM_DLLEXPORT double
 __ieee754_log10(double x)
 {
-	double f,hfsq,hi,lo,r,val_hi,val_lo,w,y,y2;
-	int32_t i,k,hx;
+	double f, hfsq, hi, lo, r, val_hi, val_lo, w, y, y2;
+	int32_t i, k, hx;
 	u_int32_t lx;
 
-	EXTRACT_WORDS(hx,lx,x);
+	do {
+		ieee_double_shape_type ew_u; 
+		ew_u.value = (x); 
+		(hx) = ew_u.parts.msw; 
+		(lx) = ew_u.parts.lsw;
+	} while (0);
 
-	k=0;
+	k = 0;
 	if (hx < 0x00100000) {			/* x < 2**-1022  */
-	    if (((hx&0x7fffffff)|lx)==0)
-		return -two54/zero;		/* log(+-0)=-inf */
-	    if (hx<0) return (x-x)/zero;	/* log(-#) = NaN */
-	    k -= 54; x *= two54; /* subnormal number, scale up x */
-	    GET_HIGH_WORD(hx,x);
+		if (((hx & 0x7fffffff) | lx) == 0) {
+			return -two54 / zero;		/* log(+-0)=-inf */
+		}
+
+		if (hx < 0) {
+			return (x - x) / zero;	/* log(-#) = NaN */
+		}
+
+	    k -= 54; 
+		x *= two54; /* subnormal number, scale up x */
+
+		do {
+			ieee_double_shape_type gh_u; 
+			gh_u.value = (x); 
+			(hx) = gh_u.parts.msw;
+		} while (0);
 	}
-	if (hx >= 0x7ff00000) return x+x;
-	if (hx == 0x3ff00000 && lx == 0)
-	    return zero;			/* log(1) = +0 */
-	k += (hx>>20)-1023;
+
+	if (hx >= 0x7ff00000) {
+		return x + x;
+	}
+
+	if (hx == 0x3ff00000 && lx == 0) {
+		return zero;			/* log(1) = +0 */
+	}
+
+	k += (hx >> 20) - 1023;
 	hx &= 0x000fffff;
-	i = (hx+0x95f64)&0x100000;
-	SET_HIGH_WORD(x,hx|(i^0x3ff00000));	/* normalize x or x/2 */
-	k += (i>>20);
+	i = (hx + 0x95f64) & 0x100000;
+
+	do {
+		ieee_double_shape_type sh_u; 
+		sh_u.value = (x); 
+		sh_u.parts.msw = (hx | (i ^ 0x3ff00000)); 
+		(x) = sh_u.value;
+	} while (0);	/* normalize x or x/2 */
+
+	k += (i >> 20);
 	y = (double)k;
 	f = x - 1.0;
-	hfsq = 0.5*f*f;
+
+	hfsq = 0.5 * f * f;
 	r = k_log1p(f);
 
 	/* See e_log2.c for most details. */
 	hi = f - hfsq;
-	SET_LOW_WORD(hi,0);
+	do {
+		ieee_double_shape_type sl_u; 
+		sl_u.value = (hi); 
+		sl_u.parts.lsw = (0); 
+		(hi) = sl_u.value;
+	} while (0);
+
 	lo = (f - hi) - hfsq + r;
-	val_hi = hi*ivln10hi;
-	y2 = y*log10_2hi;
-	val_lo = y*log10_2lo + (lo+hi)*ivln10lo + lo*ivln10hi;
+	val_hi = hi * ivln10hi;
+
+	y2 = y * log10_2hi;
+	val_lo = y * log10_2lo + (lo + hi) * ivln10lo + lo * ivln10hi;
 
 	/*
 	 * Extra precision in for adding y*log10_2hi is not strictly needed

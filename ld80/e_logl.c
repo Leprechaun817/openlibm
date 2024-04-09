@@ -63,9 +63,9 @@
  * log domain:       x < 0; returns NAN
  */
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
-#include "math_private.h"
+#include "../src/math_private.h"
 
 /* Coefficients for log(1+x) = x - x**2/2 + x**3 P(x)/Q(x)
  * 1/sqrt(2) <= x < sqrt(2)

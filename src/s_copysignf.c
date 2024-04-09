@@ -22,7 +22,7 @@
  * with the sign bit of y.
  */
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -30,8 +30,22 @@ OLM_DLLEXPORT float
 copysignf(float x, float y)
 {
 	u_int32_t ix,iy;
-	GET_FLOAT_WORD(ix,x);
-	GET_FLOAT_WORD(iy,y);
-	SET_FLOAT_WORD(x,(ix&0x7fffffff)|(iy&0x80000000));
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (x); 
+		(ix) = gf_u.word;
+	} while (0);
+
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (y); 
+		(iy) = gf_u.word;
+	} while (0);
+
+	do {
+		ieee_float_shape_type sf_u; 
+		sf_u.word = ((ix & 0x7fffffff) | (iy & 0x80000000)); 
+		(x) = sf_u.value;
+	} while (0);
         return x;
 }

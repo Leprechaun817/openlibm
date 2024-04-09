@@ -1,0 +1,1379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\aarch64">
+      <UniqueIdentifier>{78c58e04-e6ba-43a8-a0f4-040aac678ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\amd64">
+      <UniqueIdentifier>{0c03cf88-a42c-4088-8ad6-a699ba7808d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\arm">
+      <UniqueIdentifier>{9eaabeed-26b2-446a-b011-178ba6bb979a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\amd64">
+      <UniqueIdentifier>{d4eb078e-45c7-4f03-8c46-1903495261a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASM Files">
+      <UniqueIdentifier>{b0b276f9-8c8f-4506-a369-a7b7cc2c2e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASM Files\amd64">
+      <UniqueIdentifier>{575462ce-5815-45ed-b32a-a3a13b4ca213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bsdsrc">
+      <UniqueIdentifier>{b657f08f-ff3f-4de2-b40e-98d6df5d41b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bsdsrc">
+      <UniqueIdentifier>{c140839f-3ba6-44e7-8a68-843d4320b11f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\i387">
+      <UniqueIdentifier>{6776e138-ae7d-4b45-bbd3-79e44bd7559f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASM Files\i387">
+      <UniqueIdentifier>{e1fa9671-3681-43b3-a428-2162e2cdf342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\i387">
+      <UniqueIdentifier>{1f3c9152-b10a-45fd-86d2-a82319ddfa63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{96f2239e-6fd0-41f8-8b51-cf086e7687b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ld80">
+      <UniqueIdentifier>{21256b30-c773-469a-84f5-f526c3094b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ld80">
+      <UniqueIdentifier>{7e2b6648-8bc2-416a-b455-b31ffaee1871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ld128">
+      <UniqueIdentifier>{4228d49a-4b84-427e-8a58-bbcf40cd641c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ld128">
+      <UniqueIdentifier>{6fd0ac9e-0c65-4d36-90b9-680c40a8fdec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\loongarch64">
+      <UniqueIdentifier>{e2a35126-e742-4240-8fa2-af6b6c026bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mips">
+      <UniqueIdentifier>{b92ec7d3-df13-4e7e-bdd2-ef37fb5be5a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mips">
+      <UniqueIdentifier>{ffdebccf-dc28-4f39-a3c0-ee9bea0c840e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\powerpc">
+      <UniqueIdentifier>{06fd2961-a573-47d3-9a56-c03ab8b49c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\riscv64">
+      <UniqueIdentifier>{b39337d6-aab7-4fe2-883b-6eee48ebe0e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\s390">
+      <UniqueIdentifier>{489edea0-ac8f-41a4-bc8f-7057f4776413}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\amd64\bsd_asm.h">
+      <Filter>Header Files\amd64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\amd64\bsd_fpu.h">
+      <Filter>Header Files\amd64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\amd64\bsd_ieeefp.h">
+      <Filter>Header Files\amd64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bsdsrc\mathimpl.h">
+      <Filter>Header Files\bsdsrc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\i387\bsd_asm.h">
+      <Filter>Header Files\i387</Filter>
+    </ClInclude>
+    <ClInclude Include="..\i387\bsd_ieeefp.h">
+      <Filter>Header Files\i387</Filter>
+    </ClInclude>
+    <ClInclude Include="..\i387\bsd_npx.h">
+      <Filter>Header Files\i387</Filter>
+    </ClInclude>
+    <ClInclude Include="..\i387\osx_asm.h">
+      <Filter>Header Files\i387</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_complex.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_defs.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv_amd64.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv_arm.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv_i387.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv_loongarch64.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv_mips.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv_powerpc.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv_riscv.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_fenv_s390.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\openlibm_math.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ld80\e_rem_pio2l.h">
+      <Filter>Header Files\ld80</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ld80\invtrig.h">
+      <Filter>Header Files\ld80</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ld128\e_rem_pio2l.h">
+      <Filter>Header Files\ld128</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ld128\invtrig.h">
+      <Filter>Header Files\ld128</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mips\fenv-softfloat.h">
+      <Filter>Header Files\mips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\aarch64_fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\amd64_fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\bsd_cdefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\cdefs-compat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\i386_fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\k_log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\k_logf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\loongarch64_fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math_private_openbsd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mips_fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\powerpc_fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\riscv_fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\s390_fpmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\types-compat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\aarch64\fenv.c">
+      <Filter>Source Files\aarch64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\amd64\fenv.c">
+      <Filter>Source Files\amd64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arm\fenv.c">
+      <Filter>Source Files\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsdsrc\b_exp.c">
+      <Filter>Source Files\bsdsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsdsrc\b_log.c">
+      <Filter>Source Files\bsdsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsdsrc\b_tgamma.c">
+      <Filter>Source Files\bsdsrc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\i387\fenv.c">
+      <Filter>Source Files\i387</Filter>
+    </ClCompile>
+    <ClCompile Include="..\i387\invtrig.c">
+      <Filter>Source Files\i387</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_acoshl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_atanhl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_coshl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_expl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_fmodl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_hypotl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_lgammal_r.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_log2l.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_log10l.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_logl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_powl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_sinhl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\e_tgammal.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\invtrig.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\k_cosl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\k_sinl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\k_tanl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_asinhl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_ceill.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_erfl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_exp2l.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_expm1l.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_floorl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_log1pl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_modfl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_nanl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_nextafterl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_nexttoward.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_nexttowardf.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_remquol.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_tanhl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld80\s_truncl.c">
+      <Filter>Source Files\ld80</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_acoshl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_atanhl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_coshl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_expl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_fmodl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_hypotl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_lgammal_r.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_log2l.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_log10l.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_logl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_powl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_sinhl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\e_tgammal.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\invtrig.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\k_cosl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\k_sinl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\k_tanl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_asinhl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_ceill.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_erfl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_exp2l.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_expm1l.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_floorl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_log1pl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_modfl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_nanl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_nextafterl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_nexttoward.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_nexttowardf.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_remquol.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_tanhl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ld128\s_truncl.c">
+      <Filter>Source Files\ld128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\loongarch64\fenv.c">
+      <Filter>Source Files\loongarch64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mips\fenv.c">
+      <Filter>Source Files\mips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\s390\fenv.c">
+      <Filter>Source Files\s390</Filter>
+    </ClCompile>
+    <ClCompile Include="..\riscv64\fenv.c">
+      <Filter>Source Files\riscv64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\powerpc\fenv.c">
+      <Filter>Source Files\powerpc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_acos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_acosf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_acosh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_acoshf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_acosl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_asin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_asinf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_asinl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_atan2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_atan2f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_atan2l.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_atanh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_atanhf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_cosh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_coshf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_exp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_expf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_fmod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_fmodf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_fmodl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_hypot.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_hypotf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_hypotl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_j0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_j0f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_j1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_j1f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_jn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_jnf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_lgamma.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_lgamma_r.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_lgammaf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_lgammaf_r.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_lgammal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_log2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_log2f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_log10.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_log10f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_logf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_pow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_powf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_rem_pio2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_rem_pio2f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_remainder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_remainderf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_remainderl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_sinh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_sinhf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_sqrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_sqrtf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\e_sqrtl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_cos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_cosf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_exp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_expf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_rem_pio2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_sin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_sinf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_tan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\k_tanf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\polevll.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_asinh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_asinhf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_atan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_atanf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_atanl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cabs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cabsf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cabsl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cacos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cacosf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cacosh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cacoshf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cacoshl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cacosl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_carg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cargf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cargl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_casin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_casinf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_casinh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_casinhf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_casinhl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_casinl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_catan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_catanf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_catanh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_catanhf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_catanhl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_catanl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cbrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cbrtf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cbrtl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ccos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ccosf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ccosh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ccoshf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ccoshl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ccosl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ceil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ceilf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ceill.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cexp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cexpf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cexpl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cimag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cimagf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cimagl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_clog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_clogf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_clogl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_conj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_conjf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_conjl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_copysign.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_copysignf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_copysignl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cosf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cosl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cpow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cpowf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cpowl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cproj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cprojf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_cprojl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_creal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_crealf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_creall.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csinf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csinh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csinhf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csinhl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csinl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csqrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csqrtf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_csqrtl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ctan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ctanf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ctanh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ctanhf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ctanhl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ctanl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_erf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_erff.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_exp2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_exp2f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_expm1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_expm1f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fabs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fabsf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fabsl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fdim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_floor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_floorf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_floorl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fma.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fmaf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fmal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fmax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fmaxf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fmaxl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fmin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fminf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fminl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_fpclassify.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_frexp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_frexpf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_frexpl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ilogb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ilogbf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_ilogbl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_isfinite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_isinf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_isnan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_isnormal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_llrint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_llrintf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_llrintl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_llround.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_llroundf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_llroundl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_log1p.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_log1pf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_logb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_logbf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_logbl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_lrint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_lrintf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_lrintl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_lround.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_lroundf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_lroundl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_modf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_modff.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_modfl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_nan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_nearbyint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_nextafter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_nextafterf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_nextafterl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_nexttoward.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_nexttowardf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_remquo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_remquof.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_remquol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_rint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_rintf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_rintl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_round.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_roundf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_roundl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_scalbln.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_scalbn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_scalbnf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_scalbnl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_signbit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_signgam.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_sin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_sincos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_sincosf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_sincosl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_sinf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_sinl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_tan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_tanf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_tanh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_tanhf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_tanl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_tgammaf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_trunc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_truncf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\s_truncl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\w_cabs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\w_cabsf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\w_cabsl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\amd64\e_fmod.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\e_fmodf.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\e_fmodl.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\e_remainder.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\e_remainderf.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\e_remainderl.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\e_sqrt.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\e_sqrtf.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\e_sqrtl.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_llrint.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_llrintf.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_llrintl.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_logbl.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_lrint.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_lrintf.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_lrintl.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_remquo.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_remquof.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_remquol.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_rintl.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_scalbn.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_scalbnf.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\amd64\s_scalbnl.S">
+      <Filter>ASM Files\amd64</Filter>
+    </None>
+    <None Include="..\i387\e_exp.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_fmod.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_log.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_log10.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_log10f.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_logf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_remainder.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_remainderf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_remainderl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_sqrt.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_sqrtf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\e_sqrtl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_ceil.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_ceilf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_ceill.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_copysign.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_copysignf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_copysignl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_cos.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_floor.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_floorf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_floorl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_llrint.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_llrintf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_llrintl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_logb.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_logbf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_logbl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_lrint.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_lrintf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_lrintl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_remquo.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_remquof.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_remquol.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_rint.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_rintf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_rintl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_scalbn.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_scalbnf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_scalbnl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_sin.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_tan.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_trunc.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_truncf.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+    <None Include="..\i387\s_truncl.S">
+      <Filter>ASM Files\i387</Filter>
+    </None>
+  </ItemGroup>
+</Project>

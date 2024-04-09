@@ -10,3 +10,6 @@
 cov-html/
 *.gcda
 *.gcno
+/build
+/Openlibm_AMG/.vs/Openlibm_AMG
+/Openlibm_AMG/Openlibm_AMG/x64

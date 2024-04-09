@@ -18,7 +18,7 @@
 #include <math.h>
 #else /* !OPENLIBM_USE_HOST_MATH_H */
 
-#include <openlibm_defs.h>
+#include <d:\GitHub\openlibm\include\openlibm_defs.h>
 
 #ifndef OPENLIBM_MATH_H
 #define	OPENLIBM_MATH_H

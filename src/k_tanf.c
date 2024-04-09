@@ -18,7 +18,7 @@
 //__FBSDID("$FreeBSD: src/lib/msun/src/k_tanf.c,v 1.23 2009/06/03 08:16:34 ed Exp $");
 #endif
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -40,9 +40,9 @@ extern
 OLM_DLLEXPORT float
 __kernel_tandf(double x, int iy)
 {
-	double z,r,w,s,t,u;
+	double z, r, w, s, t, u;
 
-	z	=  x*x;
+	z = x * x;
 	/*
 	 * Split up the polynomial into small independent terms to give
 	 * opportunities for parallel evaluation.  The chosen splitting is
@@ -57,12 +57,20 @@ __kernel_tandf(double x, int iy)
 	 * and would give results as accurate as Horner's method if the
 	 * small terms were added from highest degree down.
 	 */
-	r = T[4]+z*T[5];
-	t = T[2]+z*T[3];
-	w = z*z;
-	s = z*x;
-	u = T[0]+z*T[1];
-	r = (x+s*u)+(s*w)*(t+w*r);
-	if(iy==1) return r;
-	else return -1.0/r;
+
+	r = T[4] + z * T[5];
+	t = T[2] + z * T[3];
+	
+	w = z * z;
+	s = z * x;
+	
+	u = T[0] + z * T[1];
+	r = (x + s * u) + (s * w) * (t + w * r);
+	
+	if (iy == 1) {
+		return r;
+	}
+	else {
+		return -1.0 / r;
+	}
 }

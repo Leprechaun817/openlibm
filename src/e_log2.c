@@ -25,7 +25,7 @@
  */
 
 #include <float.h>
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 #include "k_log.h"
@@ -40,31 +40,61 @@ static const double zero   =  0.0;
 OLM_DLLEXPORT double
 __ieee754_log2(double x)
 {
-	double f,hfsq,hi,lo,r,val_hi,val_lo,w,y;
-	int32_t i,k,hx;
+	double f, hfsq, hi, lo, r, val_hi, val_lo, w, y;
+	int32_t i, k, hx;
 	u_int32_t lx;
 
-	EXTRACT_WORDS(hx,lx,x);
+	do {
+		ieee_double_shape_type ew_u; 
+		ew_u.value = (x); 
+		(hx) = ew_u.parts.msw; 
+		(lx) = ew_u.parts.lsw;
+	} while (0);
 
-	k=0;
+	k = 0;
 	if (hx < 0x00100000) {			/* x < 2**-1022  */
-	    if (((hx&0x7fffffff)|lx)==0)
-		return -two54/zero;		/* log(+-0)=-inf */
-	    if (hx<0) return (x-x)/zero;	/* log(-#) = NaN */
-	    k -= 54; x *= two54; /* subnormal number, scale up x */
-	    GET_HIGH_WORD(hx,x);
+		if (((hx & 0x7fffffff) | lx) == 0) {
+			return -two54 / zero;		/* log(+-0)=-inf */
+		}
+
+		if (hx < 0) {
+			return (x - x) / zero;	/* log(-#) = NaN */
+		}
+
+	    k -= 54; 
+		x *= two54; /* subnormal number, scale up x */
+
+		do {
+			ieee_double_shape_type gh_u; 
+			gh_u.value = (x); 
+			(hx) = gh_u.parts.msw;
+		} while (0);
 	}
-	if (hx >= 0x7ff00000) return x+x;
-	if (hx == 0x3ff00000 && lx == 0)
-	    return zero;			/* log(1) = +0 */
-	k += (hx>>20)-1023;
+
+	if (hx >= 0x7ff00000) {
+		return x + x;
+	}
+
+	if (hx == 0x3ff00000 && lx == 0) {
+		return zero;			/* log(1) = +0 */
+	}
+
+	k += (hx >> 20) - 1023;
 	hx &= 0x000fffff;
-	i = (hx+0x95f64)&0x100000;
-	SET_HIGH_WORD(x,hx|(i^0x3ff00000));	/* normalize x or x/2 */
-	k += (i>>20);
+	i = (hx + 0x95f64) & 0x100000;
+
+	do {
+		ieee_double_shape_type sh_u; 
+		sh_u.value = (x); 
+		sh_u.parts.msw = (hx | (i ^ 0x3ff00000)); 
+		(x) = sh_u.value;
+	} while (0);	/* normalize x or x/2 */
+
+	k += (i >> 20);
 	y = (double)k;
 	f = x - 1.0;
-	hfsq = 0.5*f*f;
+
+	hfsq = 0.5 * f * f;
 	r = k_log1p(f);
 
 	/*
@@ -74,7 +104,13 @@ __ieee754_log2(double x)
 	 * be evaluated in parallel with R.  Not combining hfsq with R also
 	 * keeps R small (though not as small as a true `lo' term would be),
 	 * so that extra precision is not needed for terms involving R.
-	 *
+	 *-------------------------------------------------------------------
+	 * 
+	 * NOTE: In C#, these compiler bugs referenced here are unlikely
+	 * to exist. We leave the code in after this comment to ensure
+	 * that the result of this function hopefully remains the same.
+	 * 
+	 * ------------------------------------------------------------------
 	 * Compiler bugs involving extra precision used to break Dekker's
 	 * theorem for spitting f-hfsq as hi+lo, unless double_t was used
 	 * or the multi-precision calculations were avoided when double_t
@@ -98,10 +134,18 @@ __ieee754_log2(double x)
 	 * routine.
 	 */
 	hi = f - hfsq;
-	SET_LOW_WORD(hi,0);
+
+	do {
+		ieee_double_shape_type sl_u; 
+		sl_u.value = (hi); 
+		sl_u.parts.lsw = (0); 
+		(hi) = sl_u.value;
+	} while (0);
+
 	lo = (f - hi) - hfsq + r;
-	val_hi = hi*ivln2hi;
-	val_lo = (lo+hi)*ivln2lo + lo*ivln2hi;
+
+	val_hi = hi * ivln2hi;
+	val_lo = (lo + hi) * ivln2lo + lo * ivln2hi;
 
 	/* spadd(val_hi, val_lo, y), except for not using double_t: */
 	w = y + val_hi;

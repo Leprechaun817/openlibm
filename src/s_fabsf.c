@@ -20,7 +20,7 @@
  * fabsf(x) returns the absolute value of x.
  */
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -28,7 +28,17 @@ OLM_DLLEXPORT float
 fabsf(float x)
 {
 	u_int32_t ix;
-	GET_FLOAT_WORD(ix,x);
-	SET_FLOAT_WORD(x,ix&0x7fffffff);
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (x); 
+		(ix) = gf_u.word;
+	} while (0);
+
+	do {
+		ieee_float_shape_type sf_u; 
+		sf_u.word = (ix & 0x7fffffff); 
+		(x) = sf_u.value;
+	} while (0);
+
         return x;
 }
