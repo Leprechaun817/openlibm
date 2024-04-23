@@ -93,7 +93,7 @@ expm1f(float x)
 		} 
 		else {
 			k = invln2 * x + ((xsb == 0) ? (float)0.5 : (float)-0.5);
-			t  = k;
+			t = k;
 			hi = x - t * ln2_hi;	/* t*ln2_hi is exact here */
 			lo = t * ln2_lo;
 		}

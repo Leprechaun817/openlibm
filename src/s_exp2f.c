@@ -28,7 +28,7 @@
 //__FBSDID("$FreeBSD: src/lib/msun/src/s_exp2f.c,v 1.9 2008/02/22 02:27:34 das Exp $");
 
 #include <float.h>
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -36,12 +36,12 @@
 #define	TBLSIZE	(1 << TBLBITS)
 
 static const float
-    huge    = 0x1p100f,
-    redux   = 0x1.8p23f / TBLSIZE,
-    P1	    = 0x1.62e430p-1f,
-    P2	    = 0x1.ebfbe0p-3f,
-    P3	    = 0x1.c6b348p-5f,
-    P4	    = 0x1.3b2c9cp-7f;
+	huge    = 0x1p100f,
+	redux   = 0x1.8p23f / TBLSIZE,
+	P1	    = 0x1.62e430p-1f,
+	P2	    = 0x1.ebfbe0p-3f,
+	P3	    = 0x1.c6b348p-5f,
+	P4	    = 0x1.3b2c9cp-7f;
 
 static volatile float twom100 = 0x1p-100f;
 
@@ -99,35 +99,61 @@ exp2f(float x)
 	int32_t k;
 
 	/* Filter out exceptional cases. */
-	GET_FLOAT_WORD(hx, x);
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (x); 
+		(hx) = gf_u.word;
+	} while (0);
+
 	ix = hx & 0x7fffffff;		/* high word of |x| */
+
 	if(ix >= 0x43000000) {			/* |x| >= 128 */
 		if(ix >= 0x7f800000) {
-			if ((ix & 0x7fffff) != 0 || (hx & 0x80000000) == 0)
+			if ((ix & 0x7fffff) != 0 || (hx & 0x80000000) == 0) {
 				return (x + x);	/* x is NaN or +Inf */
-			else 
+			}
+			else {
 				return (0.0);	/* x is -Inf */
+			}
 		}
-		if(x >= 0x1.0p7f)
+
+		if (x >= 0x1.0p7f) {
 			return (huge * huge);	/* overflow */
-		if(x <= -0x1.2cp7f)
+		}
+
+		if (x <= -0x1.2cp7f) {
 			return (twom100 * twom100); /* underflow */
-	} else if (ix <= 0x33000000) {		/* |x| <= 0x1p-25 */
+		}
+	} 
+	else if (ix <= 0x33000000) {		/* |x| <= 0x1p-25 */
 		return (1.0f + x);
 	}
 
 	/* Reduce x, computing z, i0, and k. */
-	STRICT_ASSIGN(float, t, x + redux);
-	GET_FLOAT_WORD(i0, t);
+	((t) = (x + redux));
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (t); 
+		(i0) = gf_u.word;
+	} while (0);
+
 	i0 += TBLSIZE / 2;
 	k = (i0 >> TBLBITS) << 20;
+
 	i0 &= TBLSIZE - 1;
 	t -= redux;
 	z = x - t;
-	INSERT_WORDS(twopk, 0x3ff00000 + k, 0);
+	
+	do {
+		ieee_double_shape_type iw_u; 
+		iw_u.parts.msw = (0x3ff00000 + k); 
+		iw_u.parts.lsw = (0); 
+		(twopk) = iw_u.value;
+	} while (0);
 
 	/* Compute r = exp2(y) = exp2ft[i0] * p(z). */
 	tv = exp2ft[i0];
+
 	u = tv * z;
 	tv = tv + u * (P1 + z * P2) + u * (z * z) * (P3 + z * P4);
 

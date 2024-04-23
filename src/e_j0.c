@@ -61,7 +61,7 @@
  *	3. Special cases: y0(0)=-inf, y0(x<0)=NaN, y0(inf)=0.
  */
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -72,7 +72,7 @@ huge 	= 1e300,
 one	= 1.0,
 invsqrtpi=  5.64189583547756279280e-01, /* 0x3FE20DD7, 0x50429B6D */
 tpi      =  6.36619772367581382433e-01, /* 0x3FE45F30, 0x6DC9C883 */
- 		/* R0/S0 on [0, 2.00] */
+		/* R0/S0 on [0, 2.00] */
 R02  =  1.56249999999999947958e-02, /* 0x3F8FFFFF, 0xFFFFFFFD */
 R03  = -1.89979294238854721751e-04, /* 0xBF28E6A5, 0xB61AC6E9 */
 R04  =  1.82954049532700665670e-06, /* 0x3EBEB1D1, 0x0C503919 */
@@ -100,9 +100,9 @@ __ieee754_j0(double x)
 		ss = s-c;
 		cc = s+c;
 		if(ix<0x7fe00000) {  /* make sure x+x not overflow */
-		    z = -cos(x+x);
-		    if ((s*c)<zero) cc = z/ss;
-		    else 	    ss = z/cc;
+			z = -cos(x+x);
+			if ((s*c)<zero) cc = z/ss;
+			else 	    ss = z/cc;
 		}
 	/*
 	 * j0(x) = 1/sqrt(pi) * (P(0,x)*cc - Q(0,x)*ss) / sqrt(x)
@@ -110,25 +110,25 @@ __ieee754_j0(double x)
 	 */
 		if(ix>0x48000000) z = (invsqrtpi*cc)/sqrt(x);
 		else {
-		    u = pzero(x); v = qzero(x);
-		    z = invsqrtpi*(u*cc-v*ss)/sqrt(x);
+			u = pzero(x); v = qzero(x);
+			z = invsqrtpi*(u*cc-v*ss)/sqrt(x);
 		}
 		return z;
 	}
 	if(ix<0x3f200000) {	/* |x| < 2**-13 */
-	    if(huge+x>one) {	/* raise inexact if x != 0 */
-	        if(ix<0x3e400000) return one;	/* |x|<2**-27 */
-	        else 	      return one - 0.25*x*x;
-	    }
+		if(huge+x>one) {	/* raise inexact if x != 0 */
+			if(ix<0x3e400000) return one;	/* |x|<2**-27 */
+			else 	      return one - 0.25*x*x;
+		}
 	}
 	z = x*x;
 	r =  z*(R02+z*(R03+z*(R04+z*R05)));
 	s =  one+z*(S01+z*(S02+z*(S03+z*S04)));
 	if(ix < 0x3FF00000) {	/* |x| < 1.00 */
-	    return one + z*(-0.25+(r/s));
+		return one + z*(-0.25+(r/s));
 	} else {
-	    u = 0.5*x;
-	    return((one+u)*(one-u)+z*(r/s));
+		u = 0.5*x;
+		return((one+u)*(one-u)+z*(r/s));
 	}
 }
 
@@ -152,45 +152,45 @@ __ieee754_y0(double x)
 	int32_t hx,ix,lx;
 
 	EXTRACT_WORDS(hx,lx,x);
-        ix = 0x7fffffff&hx;
-    /* Y0(NaN) is NaN, y0(-inf) is Nan, y0(inf) is 0  */
+		ix = 0x7fffffff&hx;
+	/* Y0(NaN) is NaN, y0(-inf) is Nan, y0(inf) is 0  */
 	if(ix>=0x7ff00000) return  one/(x+x*x); 
-        if((ix|lx)==0) return -one/zero;
-        if(hx<0) return zero/zero;
-        if(ix >= 0x40000000) {  /* |x| >= 2.0 */
-        /* y0(x) = sqrt(2/(pi*x))*(p0(x)*sin(x0)+q0(x)*cos(x0))
-         * where x0 = x-pi/4
-         *      Better formula:
-         *              cos(x0) = cos(x)cos(pi/4)+sin(x)sin(pi/4)
-         *                      =  1/sqrt(2) * (sin(x) + cos(x))
-         *              sin(x0) = sin(x)cos(3pi/4)-cos(x)sin(3pi/4)
-         *                      =  1/sqrt(2) * (sin(x) - cos(x))
-         * To avoid cancellation, use
-         *              sin(x) +- cos(x) = -cos(2x)/(sin(x) -+ cos(x))
-         * to compute the worse one.
-         */
-                s = sin(x);
-                c = cos(x);
-                ss = s-c;
-                cc = s+c;
+		if((ix|lx)==0) return -one/zero;
+		if(hx<0) return zero/zero;
+		if(ix >= 0x40000000) {  /* |x| >= 2.0 */
+		/* y0(x) = sqrt(2/(pi*x))*(p0(x)*sin(x0)+q0(x)*cos(x0))
+		 * where x0 = x-pi/4
+		 *      Better formula:
+		 *              cos(x0) = cos(x)cos(pi/4)+sin(x)sin(pi/4)
+		 *                      =  1/sqrt(2) * (sin(x) + cos(x))
+		 *              sin(x0) = sin(x)cos(3pi/4)-cos(x)sin(3pi/4)
+		 *                      =  1/sqrt(2) * (sin(x) - cos(x))
+		 * To avoid cancellation, use
+		 *              sin(x) +- cos(x) = -cos(2x)/(sin(x) -+ cos(x))
+		 * to compute the worse one.
+		 */
+				s = sin(x);
+				c = cos(x);
+				ss = s-c;
+				cc = s+c;
 	/*
 	 * j0(x) = 1/sqrt(pi) * (P(0,x)*cc - Q(0,x)*ss) / sqrt(x)
 	 * y0(x) = 1/sqrt(pi) * (P(0,x)*ss + Q(0,x)*cc) / sqrt(x)
 	 */
-                if(ix<0x7fe00000) {  /* make sure x+x not overflow */
-                    z = -cos(x+x);
-                    if ((s*c)<zero) cc = z/ss;
-                    else            ss = z/cc;
-                }
-                if(ix>0x48000000) z = (invsqrtpi*ss)/sqrt(x);
-                else {
-                    u = pzero(x); v = qzero(x);
-                    z = invsqrtpi*(u*ss+v*cc)/sqrt(x);
-                }
-                return z;
+				if(ix<0x7fe00000) {  /* make sure x+x not overflow */
+					z = -cos(x+x);
+					if ((s*c)<zero) cc = z/ss;
+					else            ss = z/cc;
+				}
+				if(ix>0x48000000) z = (invsqrtpi*ss)/sqrt(x);
+				else {
+					u = pzero(x); v = qzero(x);
+					z = invsqrtpi*(u*ss+v*cc)/sqrt(x);
+				}
+				return z;
 	}
 	if(ix<=0x3e400000) {	/* x < 2**-27 */
-	    return(u00 + tpi*__ieee754_log(x));
+		return(u00 + tpi*__ieee754_log(x));
 	}
 	z = x*x;
 	u = u00+z*(u01+z*(u02+z*(u03+z*(u04+z*(u05+z*u06)))));
@@ -279,7 +279,7 @@ static const double pS2[5] = {
 	int32_t ix;
 	GET_HIGH_WORD(ix,x);
 	ix &= 0x7fffffff;
-        assert(ix>=0x40000000 && ix<=0x48000000);
+		assert(ix>=0x40000000 && ix<=0x48000000);
 	if(ix>=0x40200000)     {p = pR8; q= pS8;}
 	else if(ix>=0x40122E8B){p = pR5; q= pS5;}
 	else if(ix>=0x4006DB6D){p = pR3; q= pS3;}
@@ -376,7 +376,7 @@ static const double qS2[6] = {
 	int32_t ix;
 	GET_HIGH_WORD(ix,x);
 	ix &= 0x7fffffff;
-        assert(ix>=0x40000000 && ix<=0x48000000);
+		assert(ix>=0x40000000 && ix<=0x48000000);
 	if(ix>=0x40200000)     {p = qR8; q= qS8;}
 	else if(ix>=0x40122E8B){p = qR5; q= qS5;}
 	else if(ix>=0x4006DB6D){p = qR3; q= qS3;}

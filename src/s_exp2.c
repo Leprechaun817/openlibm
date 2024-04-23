@@ -28,7 +28,7 @@
 //__FBSDID("$FreeBSD: src/lib/msun/src/s_exp2.c,v 1.7 2008/02/22 02:27:34 das Exp $");
 
 #include <float.h>
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -345,29 +345,54 @@ exp2(double x)
 	int k;
 
 	/* Filter out exceptional cases. */
-	GET_HIGH_WORD(hx,x);
+	do {
+		ieee_double_shape_type gh_u; 
+		gh_u.value = (x); 
+		(hx) = gh_u.parts.msw;
+	} while (0);
+
 	ix = hx & 0x7fffffff;		/* high word of |x| */
+
 	if(ix >= 0x40900000) {			/* |x| >= 1024 */
 		if(ix >= 0x7ff00000) {
-			GET_LOW_WORD(lx,x);
-			if(((ix & 0xfffff) | lx) != 0 || (hx & 0x80000000) == 0)
+			do {
+				ieee_double_shape_type gl_u; 
+				gl_u.value = (x); 
+				(lx) = gl_u.parts.lsw;
+			} while (0);
+
+			if (((ix & 0xfffff) | lx) != 0 || (hx & 0x80000000) == 0) {
 				return (x + x);	/* x is NaN or +Inf */
-			else 
+			}
+			else {
 				return (0.0);	/* x is -Inf */
+			}
 		}
-		if(x >= 0x1.0p10)
+
+		if (x >= 0x1.0p10) {
 			return (huge * huge); /* overflow */
-		if(x <= -0x1.0ccp10)
+		}
+
+		if (x <= -0x1.0ccp10) {
 			return (twom1000 * twom1000); /* underflow */
-	} else if (ix < 0x3c900000) {		/* |x| < 0x1p-54 */
+		}
+	} 
+	else if (ix < 0x3c900000) {		/* |x| < 0x1p-54 */
 		return (1.0 + x);
 	}
 
 	/* Reduce x, computing z, i0, and k. */
-	STRICT_ASSIGN(double, t, x + redux);
-	GET_LOW_WORD(i0, t);
+	((t) = (x + redux));
+
+	do {
+		ieee_double_shape_type gl_u; 
+		gl_u.value = (t); 
+		(i0) = gl_u.parts.lsw;
+	} while (0);
+
 	i0 += TBLSIZE / 2;
 	k = (i0 >> TBLBITS) << 20;
+
 	i0 = (i0 & (TBLSIZE - 1)) << 1;
 	t -= redux;
 	z = x - t;
@@ -375,18 +400,35 @@ exp2(double x)
 	/* Compute r = exp2(y) = exp2t[i0] * p(z - eps[i]). */
 	t = tbl[i0];		/* exp2t[i0] */
 	z -= tbl[i0 + 1];	/* eps[i0]   */
-	if (k >= -(1021 << 20))
-		INSERT_WORDS(twopk, 0x3ff00000 + k, 0);
-	else
-		INSERT_WORDS(twopkp1000, 0x3ff00000 + k + (1000 << 20), 0);
+	
+	if (k >= -(1021 << 20)) {
+		do {
+			ieee_double_shape_type iw_u; 
+			iw_u.parts.msw = (0x3ff00000 + k); 
+			iw_u.parts.lsw = (0); 
+			(twopk) = iw_u.value;
+		} while (0);
+	}
+	else {
+		do {
+			ieee_double_shape_type iw_u; 
+			iw_u.parts.msw = (0x3ff00000 + k + (1000 << 20)); 
+			iw_u.parts.lsw = (0); 
+			(twopkp1000) = iw_u.value;
+		} while (0);
+	}
+
 	r = t + t * z * (P1 + z * (P2 + z * (P3 + z * (P4 + z * P5))));
 
 	/* Scale by 2**(k>>20). */
 	if(k >= -(1021 << 20)) {
-		if (k == 1024 << 20)
+		if (k == 1024 << 20) {
 			return (r * 2.0 * 0x1p1023);
+		}
+
 		return (r * twopk);
-	} else {
+	} 
+	else {
 		return (r * twopkp1000 * twom1000);
 	}
 }

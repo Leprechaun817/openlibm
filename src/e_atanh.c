@@ -34,7 +34,7 @@
  */
 
 #include <float.h>
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -45,22 +45,51 @@ OLM_DLLEXPORT double
 __ieee754_atanh(double x)
 {
 	double t;
-	int32_t hx,ix;
+	int32_t hx, ix;
 	u_int32_t lx;
-	EXTRACT_WORDS(hx,lx,x);
-	ix = hx&0x7fffffff;
-	if ((ix|((lx|(-lx))>>31))>0x3ff00000) /* |x|>1 */
-	    return (x-x)/(x-x);
-	if(ix==0x3ff00000) 
-	    return x/zero;
-	if(ix<0x3e300000&&(huge+x)>zero) return x;	/* x<2**-28 */
-	SET_HIGH_WORD(x,ix);
-	if(ix<0x3fe00000) {		/* x < 0.5 */
-	    t = x+x;
-	    t = 0.5*log1p(t+t*x/(one-x));
-	} else 
-	    t = 0.5*log1p((x+x)/(one-x));
-	if(hx>=0) return t; else return -t;
+
+	do {
+		ieee_double_shape_type ew_u; 
+		ew_u.value = (x); 
+		(hx) = ew_u.parts.msw; 
+		(lx) = ew_u.parts.lsw;
+	} while (0);
+
+	ix = hx & 0x7fffffff;
+
+	if ((ix | ((lx | (-lx)) >> 31)) > 0x3ff00000) {/* |x|>1 */
+		return (x - x) / (x - x);
+	}
+
+	if (ix == 0x3ff00000) {
+		return x / zero;
+	}
+
+	if (ix<0x3e300000 && (huge + x)>zero) {
+		return x;	/* x<2**-28 */
+	}
+
+	do {
+		ieee_double_shape_type sh_u; 
+		sh_u.value = (x); 
+		sh_u.parts.msw = (ix); 
+		(x) = sh_u.value;
+	} while (0);
+
+	if(ix < 0x3fe00000) {		/* x < 0.5 */
+	    t = x + x;
+	    t = 0.5 * log1p(t + t * x / (one - x));
+	} 
+	else {
+		t = 0.5 * log1p((x + x) / (one - x));
+	}
+
+	if (hx >= 0) {
+		return t;
+	}
+	else {
+		return -t;
+	}
 }
 
 #if (LDBL_MANT_DIG == 53)

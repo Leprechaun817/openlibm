@@ -101,7 +101,7 @@ P4 = -1.65339022054652515390e-06, /* 0xBEBBBD41, 0xC5D26BF1 */
 P5 = 4.13813679705723846039e-08; /* 0x3E663769, 0x72BEA4D0 */
 
 static volatile double
-twom1000= 9.33263618503218878990e-302;     /* 2**-1000=0x01700000,0*/
+twom1000 = 9.33263618503218878990e-302;     /* 2**-1000=0x01700000,0*/
 
 OLM_DLLEXPORT double
 __ieee754_exp(double x)	/* default IEEE double exp */
@@ -124,7 +124,7 @@ __ieee754_exp(double x)	/* default IEEE double exp */
 
 	/* filter out non-finite argument */
 	if(hx >= 0x40862E42) {			/* if |x|>=709.78... */
-		if(hx>=0x7ff00000) {
+		if(hx >= 0x7ff00000) {
 			u_int32_t lx;
 
 			do {
@@ -154,8 +154,9 @@ __ieee754_exp(double x)	/* default IEEE double exp */
 	   which is well within the allowable error. however,
 	   2.718281828459045 is closer to the true value so we prefer that
 	   answer, given that 1.0 is such an important argument value. */
-	if (x == 1.0)
+	if (x == 1.0) {
 		return 2.718281828459045235360;
+	}
 
 	/* argument reduction */
 	if(hx > 0x3fd62e42) {		/* if  |x| > 0.5 ln2 */ 
@@ -216,7 +217,7 @@ __ieee754_exp(double x)	/* default IEEE double exp */
 			return y * 2.0 * 0x1p1023;
 		}
 
-		return y*twopk;
+		return y * twopk;
 	} 
 	else {
 		return y * twopk * twom1000;
