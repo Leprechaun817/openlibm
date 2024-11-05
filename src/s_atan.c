@@ -116,6 +116,7 @@ atan(double x)
 	}
 	else {
 		x = fabs(x);
+
 		if (ix < 0x3ff30000) {		/* |x| < 1.1875 */
 			if (ix < 0x3fe60000) {	/* 7/16 <=|x|<11/16 */
 				id = 0; 

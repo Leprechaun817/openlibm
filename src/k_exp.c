@@ -55,9 +55,22 @@ __frexp_exp(double x, int *expt)
 	 * a tiny number without losing accuracy due to denormalization.
 	 */
 	exp_x = exp(x - kln2);
-	GET_HIGH_WORD(hx, exp_x);
+
+	do {
+		ieee_double_shape_type gh_u; 
+		gh_u.value = (exp_x); 
+		(hx) = gh_u.parts.msw;
+	} while (0);
+
 	*expt = (hx >> 20) - (0x3ff + 1023) + k;
-	SET_HIGH_WORD(exp_x, (hx & 0xfffff) | ((0x3ff + 1023) << 20));
+
+	do {
+		ieee_double_shape_type sh_u; 
+		sh_u.value = (exp_x); 
+		sh_u.parts.msw = ((hx & 0xfffff) | ((0x3ff + 1023) << 20)); 
+		(exp_x) = sh_u.value;
+	} while (0);
+
 	return (exp_x);
 }
 
@@ -79,7 +92,14 @@ __ldexp_exp(double x, int expt)
 
 	exp_x = __frexp_exp(x, &ex_expt);
 	expt += ex_expt;
-	INSERT_WORDS(scale, (0x3ff + expt) << 20, 0);
+
+	do {
+		ieee_double_shape_type iw_u; 
+		iw_u.parts.msw = ((0x3ff + expt) << 20); 
+		iw_u.parts.lsw = (0); 
+		(scale) = iw_u.value;
+	} while (0);
+
 	return (exp_x * scale);
 }
 

@@ -48,9 +48,21 @@ __frexp_expf(float x, int *expt)
 	u_int32_t hx;
 
 	exp_x = expf(x - kln2);
-	GET_FLOAT_WORD(hx, exp_x);
+
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (exp_x); 
+		(hx) = gf_u.word;
+	} while (0);
+
 	*expt = (hx >> 23) - (0x7f + 127) + k;
-	SET_FLOAT_WORD(exp_x, (hx & 0x7fffff) | ((0x7f + 127) << 23));
+
+	do {
+		ieee_float_shape_type sf_u; 
+		sf_u.word = ((hx & 0x7fffff) | ((0x7f + 127) << 23)); 
+		(exp_x) = sf_u.value;
+	} while (0);
+
 	return (exp_x);
 }
 
@@ -62,7 +74,13 @@ __ldexp_expf(float x, int expt)
 
 	exp_x = __frexp_expf(x, &ex_expt);
 	expt += ex_expt;
-	SET_FLOAT_WORD(scale, (0x7f + expt) << 23);
+
+	do {
+		ieee_float_shape_type sf_u; 
+		sf_u.word = ((0x7f + expt) << 23); 
+		(scale) = sf_u.value;
+	} while (0);
+
 	return (exp_x * scale);
 }
 

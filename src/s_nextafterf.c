@@ -16,7 +16,7 @@
 #include "cdefs-compat.h"
 //__FBSDID("$FreeBSD: src/lib/msun/src/s_nextafterf.c,v 1.11 2008/02/22 02:30:35 das Exp $");
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -24,44 +24,91 @@ OLM_DLLEXPORT float
 nextafterf(float x, float y)
 {
 	volatile float t;
-	int32_t hx,hy,ix,iy;
+	int32_t hx, hy, ix, iy;
 
-	GET_FLOAT_WORD(hx,x);
-	GET_FLOAT_WORD(hy,y);
-	ix = hx&0x7fffffff;		/* |x| */
-	iy = hy&0x7fffffff;		/* |y| */
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (x); 
+		(hx) = gf_u.word;
+	} while (0);
 
-	if((ix>0x7f800000) ||   /* x is nan */
-	   (iy>0x7f800000))     /* y is nan */
-	   return x+y;
-	if(x==y) return y;		/* x=y, return y */
-	if(ix==0) {				/* x == 0 */
-	    SET_FLOAT_WORD(x,(hy&0x80000000)|1);/* return +-minsubnormal */
-	    t = x*x;
-	    if(t==x) return t; else return x;	/* raise underflow flag */
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (y); 
+		(hy) = gf_u.word;
+	} while (0);
+
+	ix = hx & 0x7fffffff;		/* |x| */
+	iy = hy & 0x7fffffff;		/* |y| */
+
+		/* x is nan */			/* y is nan */
+	if ((ix > 0x7f800000) || (iy > 0x7f800000)) {
+		return x + y;
 	}
-	if(hx>=0) {				/* x > 0 */
-	    if(hx>hy) {				/* x > y, x -= ulp */
-		hx -= 1;
-	    } else {				/* x < y, x += ulp */
-		hx += 1;
-	    }
-	} else {				/* x < 0 */
-	    if(hy>=0||hx>hy){			/* x < y, x -= ulp */
-		hx -= 1;
-	    } else {				/* x > y, x += ulp */
-		hx += 1;
-	    }
+
+	if (x == y) {
+		return y;		/* x=y, return y */
 	}
-	hy = hx&0x7f800000;
-	if(hy>=0x7f800000) return x+x;	/* overflow  */
-	if(hy<0x00800000) {		/* underflow */
-	    t = x*x;
-	    if(t!=x) {		/* raise underflow flag */
-	        SET_FLOAT_WORD(y,hx);
-		return y;
-	    }
+
+	if (ix == 0) {				/* x == 0 */
+		do {
+			ieee_float_shape_type sf_u; 
+			sf_u.word = ((hy & 0x80000000) | 1); 
+			(x) = sf_u.value;
+		} while (0);/* return +-minsubnormal */
+
+		t = x * x;
+		
+		if (t == x) {
+			return t;
+		}
+		else {
+			return x;	/* raise underflow flag */
+		}
 	}
-	SET_FLOAT_WORD(x,hx);
+
+	if (hx >= 0) {				/* x > 0 */
+		if (hx > hy) {				/* x > y, x -= ulp */
+			hx -= 1;
+		}
+		else {				/* x < y, x += ulp */
+			hx += 1;
+		}
+	}
+	else {				/* x < 0 */
+		if (hy >= 0 || hx > hy) {			/* x < y, x -= ulp */
+			hx -= 1;
+		}
+		else {				/* x > y, x += ulp */
+			hx += 1;
+		}
+	}
+
+	hy = hx & 0x7f800000;
+	
+	if (hy >= 0x7f800000) {
+		return x + x;	/* overflow  */
+	}
+
+	if (hy < 0x00800000) {		/* underflow */
+		t = x * x;
+		
+		if (t != x) {		/* raise underflow flag */
+			do {
+				ieee_float_shape_type sf_u; 
+				sf_u.word = (hx); 
+				(y) = sf_u.value;
+			} while (0);
+
+			return y;
+		}
+	}
+	
+	do {
+		ieee_float_shape_type sf_u; 
+		sf_u.word = (hx); 
+		(x) = sf_u.value;
+	} while (0);
+
 	return x;
 }

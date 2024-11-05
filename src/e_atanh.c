@@ -65,7 +65,7 @@ __ieee754_atanh(double x)
 		return x / zero;
 	}
 
-	if (ix<0x3e300000 && (huge + x)>zero) {
+	if (ix < 0x3e300000 && (huge + x) > zero) {
 		return x;	/* x<2**-28 */
 	}
 

@@ -36,11 +36,14 @@
  */
 
 #include <float.h>
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
-static const double one = 1.0, half=0.5, huge = 1.0e300;
+static const double 
+	one = 1.0, 
+	half=0.5, 
+	huge = 1.0e300;
 
 OLM_DLLEXPORT double
 __ieee754_cosh(double x)
@@ -48,36 +51,51 @@ __ieee754_cosh(double x)
 	double t,w;
 	int32_t ix;
 
-    /* High word of |x|. */
-	GET_HIGH_WORD(ix,x);
+	/* High word of |x|. */
+	do {
+		ieee_double_shape_type gh_u; 
+		gh_u.value = (x); 
+		(ix) = gh_u.parts.msw;
+	} while (0);
+
 	ix &= 0x7fffffff;
 
-    /* x is INF or NaN */
-	if(ix>=0x7ff00000) return x*x;	
-
-    /* |x| in [0,0.5*ln2], return 1+expm1(|x|)^2/(2*exp(|x|)) */
-	if(ix<0x3fd62e43) {
-	    t = expm1(fabs(x));
-	    w = one+t;
-	    if (ix<0x3c800000) return w;	/* cosh(tiny) = 1 */
-	    return one+(t*t)/(w+w);
+	/* x is INF or NaN */
+	if (ix >= 0x7ff00000) {
+		return x * x;
 	}
 
-    /* |x| in [0.5*ln2,22], return (exp(|x|)+1/exp(|x|)/2; */
+	/* |x| in [0,0.5*ln2], return 1+expm1(|x|)^2/(2*exp(|x|)) */
+	if(ix < 0x3fd62e43) {
+		t = expm1(fabs(x));
+		w = one + t;
+
+		if (ix < 0x3c800000) {
+			return w;	/* cosh(tiny) = 1 */
+		}
+
+		return one + (t * t) / (w + w);
+	}
+
+	/* |x| in [0.5*ln2,22], return (exp(|x|)+1/exp(|x|)/2; */
 	if (ix < 0x40360000) {
 		t = __ieee754_exp(fabs(x));
-		return half*t+half/t;
+
+		return half * t + half / t;
 	}
 
-    /* |x| in [22, log(maxdouble)] return half*exp(|x|) */
-	if (ix < 0x40862E42)  return half*__ieee754_exp(fabs(x));
+	/* |x| in [22, log(maxdouble)] return half*exp(|x|) */
+	if (ix < 0x40862E42) {
+		return half * __ieee754_exp(fabs(x));
+	}
 
-    /* |x| in [log(maxdouble), overflowthresold] */
-	if (ix<=0x408633CE)
-	    return __ldexp_exp(fabs(x), -1);
+	/* |x| in [log(maxdouble), overflowthresold] */
+	if (ix <= 0x408633CE) {
+		return __ldexp_exp(fabs(x), -1);
+	}
 
-    /* |x| > overflowthresold, cosh(x) overflow */
-	return huge*huge;
+	/* |x| > overflowthresold, cosh(x) overflow */
+	return huge * huge;
 }
 
 #if (LDBL_MANT_DIG == 53)

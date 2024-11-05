@@ -16,45 +16,63 @@
 #include "cdefs-compat.h"
 //__FBSDID("$FreeBSD: src/lib/msun/src/e_coshf.c,v 1.9 2011/10/21 06:28:47 das Exp $");
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
-static const float one = 1.0, half=0.5, huge = 1.0e30;
+static const float 
+	one = 1.0, 
+	half = 0.5, 
+	huge = 1.0e30;
 
 OLM_DLLEXPORT float
 __ieee754_coshf(float x)
 {
-	float t,w;
+	float t, w;
 	int32_t ix;
 
-	GET_FLOAT_WORD(ix,x);
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (x); 
+		(ix) = gf_u.word;
+	} while (0);
+
 	ix &= 0x7fffffff;
 
-    /* x is INF or NaN */
-	if(ix>=0x7f800000) return x*x;
-
-    /* |x| in [0,0.5*ln2], return 1+expm1(|x|)^2/(2*exp(|x|)) */
-	if(ix<0x3eb17218) {
-	    t = expm1f(fabsf(x));
-	    w = one+t;
-	    if (ix<0x39800000) return one;	/* cosh(tiny) = 1 */
-	    return one+(t*t)/(w+w);
+	/* x is INF or NaN */
+	if (ix >= 0x7f800000) {
+		return x * x;
 	}
 
-    /* |x| in [0.5*ln2,9], return (exp(|x|)+1/exp(|x|))/2; */
+	/* |x| in [0,0.5*ln2], return 1+expm1(|x|)^2/(2*exp(|x|)) */
+	if(ix < 0x3eb17218) {
+		t = expm1f(fabsf(x));
+		w = one + t;
+
+		if (ix < 0x39800000) {
+			return one;	/* cosh(tiny) = 1 */
+		}
+
+		return one + (t * t) / (w + w);
+	}
+
+	/* |x| in [0.5*ln2,9], return (exp(|x|)+1/exp(|x|))/2; */
 	if (ix < 0x41100000) {
 		t = __ieee754_expf(fabsf(x));
-		return half*t+half/t;
+
+		return half * t + half / t;
 	}
 
-    /* |x| in [9, log(maxfloat)] return half*exp(|x|) */
-	if (ix < 0x42b17217)  return half*__ieee754_expf(fabsf(x));
+	/* |x| in [9, log(maxfloat)] return half*exp(|x|) */
+	if (ix < 0x42b17217) {
+		return half * __ieee754_expf(fabsf(x));
+	}
 
-    /* |x| in [log(maxfloat), overflowthresold] */
-	if (ix<=0x42b2d4fc)
-	    return __ldexp_expf(fabsf(x), -1);
+	/* |x| in [log(maxfloat), overflowthresold] */
+	if (ix <= 0x42b2d4fc) {
+		return __ldexp_expf(fabsf(x), -1);
+	}
 
-    /* |x| > overflowthresold, cosh(x) overflow */
-	return huge*huge;
+	/* |x| > overflowthresold, cosh(x) overflow */
+	return huge * huge;
 }

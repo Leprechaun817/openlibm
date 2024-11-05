@@ -37,7 +37,12 @@ round(double x)
 	double t;
 	uint32_t hx;
 
-	GET_HIGH_WORD(hx, x);
+	do {
+		ieee_double_shape_type gh_u; 
+		gh_u.value = (x); 
+		(hx) = gh_u.parts.msw;
+	} while (0);
+
 	if ((hx & 0x7fffffff) == 0x7ff00000)
 		return (x + x);
 

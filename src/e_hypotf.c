@@ -16,69 +16,166 @@
 #include "cdefs-compat.h"
 //__FBSDID("$FreeBSD: src/lib/msun/src/e_hypotf.c,v 1.14 2011/10/15 07:00:28 das Exp $");
 
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
 OLM_DLLEXPORT float
 __ieee754_hypotf(float x, float y)
 {
-	float a,b,t1,t2,y1,y2,w;
-	int32_t j,k,ha,hb;
+	float a, b, t1, t2, y1, y2, w;
+	int32_t j, k, ha, hb;
 
-	GET_FLOAT_WORD(ha,x);
+	do {
+		ieee_float_shape_type gf_u;
+		gf_u.value = (x); 
+		(ha) = gf_u.word;
+	} while (0);
+
 	ha &= 0x7fffffff;
-	GET_FLOAT_WORD(hb,y);
+	
+	do {
+		ieee_float_shape_type gf_u; 
+		gf_u.value = (y); 
+		(hb) = gf_u.word;
+	} while (0);
+	
 	hb &= 0x7fffffff;
-	if(hb > ha) {a=y;b=x;j=ha; ha=hb;hb=j;} else {a=x;b=y;}
+	
+	if (hb > ha) {
+		a = y; 
+		b = x; 
+		j = ha; 
+		ha = hb; 
+		hb = j;
+	}
+	else {
+		a = x; 
+		b = y;
+	}
+
 	a = fabsf(a);
 	b = fabsf(b);
-	if((ha-hb)>0xf000000) {return a+b;} /* x/y > 2**30 */
-	k=0;
+	
+	if ((ha - hb) > 0xf000000) {
+		return a + b; /* x/y > 2**30 */
+	}
+
+	k = 0;
+
 	if(ha > 0x58800000) {	/* a>2**50 */
 	   if(ha >= 0x7f800000) {	/* Inf or NaN */
-	       /* Use original arg order iff result is NaN; quieten sNaNs. */
-	       w = fabsf(x+0.0F)-fabsf(y+0.0F);
-	       if(ha == 0x7f800000) w = a;
-	       if(hb == 0x7f800000) w = b;
-	       return w;
+		   /* Use original arg order iff result is NaN; quieten sNaNs. */
+		   w = fabsf(x + 0.0F) - fabsf(y + 0.0F);
+
+		   if (ha == 0x7f800000) {
+			   w = a;
+		   }
+
+		   if (hb == 0x7f800000) {
+			   w = b;
+		   }
+
+		   return w;
 	   }
+
 	   /* scale a and b by 2**-68 */
-	   ha -= 0x22000000; hb -= 0x22000000;	k += 68;
-	   SET_FLOAT_WORD(a,ha);
-	   SET_FLOAT_WORD(b,hb);
+	   ha -= 0x22000000; 
+	   hb -= 0x22000000;	
+	   k += 68;
+	   
+	   do {
+		   ieee_float_shape_type sf_u; 
+		   sf_u.word = (ha); 
+		   (a) = sf_u.value;
+	   } while (0);
+
+	   do {
+		   ieee_float_shape_type sf_u; 
+		   sf_u.word = (hb); 
+		   (b) = sf_u.value;
+	   } while (0);
 	}
+
 	if(hb < 0x26800000) {	/* b < 2**-50 */
-	    if(hb <= 0x007fffff) {	/* subnormal b or 0 */
-	        if(hb==0) return a;
-		SET_FLOAT_WORD(t1,0x7e800000);	/* t1=2^126 */
-		b *= t1;
-		a *= t1;
-		k -= 126;
-	    } else {		/* scale a and b by 2^68 */
-	        ha += 0x22000000; 	/* a *= 2^68 */
-		hb += 0x22000000;	/* b *= 2^68 */
-		k -= 68;
-		SET_FLOAT_WORD(a,ha);
-		SET_FLOAT_WORD(b,hb);
-	    }
+		if(hb <= 0x007fffff) {	/* subnormal b or 0 */
+			if (hb == 0) {
+				return a;
+			}
+
+			do {
+				ieee_float_shape_type sf_u; 
+				sf_u.word = (0x7e800000); 
+				(t1) = sf_u.value;
+			} while (0);	/* t1=2^126 */
+			
+			b *= t1;
+			a *= t1;
+			k -= 126;
+		} 
+		else {		/* scale a and b by 2^68 */
+			ha += 0x22000000; 	/* a *= 2^68 */
+			hb += 0x22000000;	/* b *= 2^68 */
+			k -= 68;
+
+			do {
+				ieee_float_shape_type sf_u; 
+				sf_u.word = (ha); 
+				(a) = sf_u.value;
+			} while (0);
+			
+			do {
+				ieee_float_shape_type sf_u; 
+				sf_u.word = (hb); 
+				(b) = sf_u.value;
+			} while (0);
+		}
 	}
-    /* medium size a and b */
-	w = a-b;
-	if (w>b) {
-	    SET_FLOAT_WORD(t1,ha&0xfffff000);
-	    t2 = a-t1;
-	    w  = __ieee754_sqrtf(t1*t1-(b*(-b)-t2*(a+t1)));
-	} else {
-	    a  = a+a;
-	    SET_FLOAT_WORD(y1,hb&0xfffff000);
-	    y2 = b - y1;
-	    SET_FLOAT_WORD(t1,(ha+0x00800000)&0xfffff000);
-	    t2 = a - t1;
-	    w  = __ieee754_sqrtf(t1*y1-(w*(-w)-(t1*y2+t2*b)));
+
+	/* medium size a and b */
+	w = a - b;
+
+	if (w > b) {
+		do {
+			ieee_float_shape_type sf_u; 
+			sf_u.word = (ha & 0xfffff000); 
+			(t1) = sf_u.value;
+		} while (0);
+		
+		t2 = a - t1;
+		w = __ieee754_sqrtf(t1 * t1 - (b * (-b) - t2 * (a + t1)));
 	}
-	if(k!=0) {
-	    SET_FLOAT_WORD(t1,0x3f800000+(k<<23));
-	    return t1*w;
-	} else return w;
+	else {
+		a = a + a;
+		
+		do {
+			ieee_float_shape_type sf_u; 
+			sf_u.word = (hb & 0xfffff000); 
+			(y1) = sf_u.value;
+		} while (0);
+		
+		y2 = b - y1;
+		
+		do {
+			ieee_float_shape_type sf_u; 
+			sf_u.word = ((ha + 0x00800000) & 0xfffff000); 
+			(t1) = sf_u.value;
+		} while (0);
+		
+		t2 = a - t1;
+		w = __ieee754_sqrtf(t1 * y1 - (w * (-w) - (t1 * y2 + t2 * b)));
+	}
+
+	if (k != 0) {
+		do {
+			ieee_float_shape_type sf_u; 
+			sf_u.word = (0x3f800000 + (k << 23)); 
+			(t1) = sf_u.value;
+		} while (0);
+		
+		return t1 * w;
+	}
+	else {
+		return w;
+	}
 }

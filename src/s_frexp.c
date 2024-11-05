@@ -24,7 +24,7 @@
  */
 
 #include <float.h>
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -35,19 +35,44 @@ OLM_DLLEXPORT double
 frexp(double x, int *eptr)
 {
 	int32_t hx, ix, lx;
-	EXTRACT_WORDS(hx,lx,x);
-	ix = 0x7fffffff&hx;
+
+	do {
+		ieee_double_shape_type ew_u; 
+		ew_u.value = (x); 
+		(hx) = ew_u.parts.msw; 
+		(lx) = ew_u.parts.lsw;
+	} while (0);
+
+	ix = 0x7fffffff & hx;
 	*eptr = 0;
-	if(ix>=0x7ff00000||((ix|lx)==0)) return x;	/* 0,inf,nan */
-	if (ix<0x00100000) {		/* subnormal */
+
+	if (ix >= 0x7ff00000 || ((ix | lx) == 0)) {
+		return x;	/* 0,inf,nan */
+	}
+
+	if (ix < 0x00100000) {		/* subnormal */
 	    x *= two54;
-	    GET_HIGH_WORD(hx,x);
-	    ix = hx&0x7fffffff;
+
+		do {
+			ieee_double_shape_type gh_u; 
+			gh_u.value = (x); 
+			(hx) = gh_u.parts.msw;
+		} while (0);
+
+	    ix = hx & 0x7fffffff;
 	    *eptr = -54;
 	}
-	*eptr += (ix>>20)-1022;
-	hx = (hx&0x800fffff)|0x3fe00000;
-	SET_HIGH_WORD(x,hx);
+
+	*eptr += (ix >> 20) - 1022;
+	hx = (hx & 0x800fffff) | 0x3fe00000;
+
+	do {
+		ieee_double_shape_type sh_u; 
+		sh_u.value = (x); 
+		sh_u.parts.msw = (hx); 
+		(x) = sh_u.value;
+	} while (0);
+
 	return x;
 }
 

@@ -21,7 +21,7 @@
  */
 
 #include <float.h>
-#include <openlibm_math.h>
+#include "../include/openlibm_math.h"
 
 #include "math_private.h"
 
@@ -29,50 +29,113 @@ OLM_DLLEXPORT double
 nextafter(double x, double y)
 {
 	volatile double t;
-	int32_t hx,hy,ix,iy;
-	u_int32_t lx,ly;
+	int32_t hx, hy, ix, iy;
+	u_int32_t lx, ly;
 
-	EXTRACT_WORDS(hx,lx,x);
-	EXTRACT_WORDS(hy,ly,y);
-	ix = hx&0x7fffffff;		/* |x| */
-	iy = hy&0x7fffffff;		/* |y| */
+	do {
+		ieee_double_shape_type ew_u; 
+		ew_u.value = (x); 
+		(hx) = ew_u.parts.msw; 
+		(lx) = ew_u.parts.lsw;
+	} while (0);
 
-	if(((ix>=0x7ff00000)&&((ix-0x7ff00000)|lx)!=0) ||   /* x is nan */
-	   ((iy>=0x7ff00000)&&((iy-0x7ff00000)|ly)!=0))     /* y is nan */
-	   return x+y;
-	if(x==y) return y;		/* x=y, return y */
-	if((ix|lx)==0) {			/* x == 0 */
-	    INSERT_WORDS(x,hy&0x80000000,1);	/* return +-minsubnormal */
-	    t = x*x;
-	    if(t==x) return t; else return x;	/* raise underflow flag */
+	do {
+		ieee_double_shape_type ew_u; 
+		ew_u.value = (y); 
+		(hy) = ew_u.parts.msw; 
+		(ly) = ew_u.parts.lsw;
+	} while (0);
+
+	ix = hx & 0x7fffffff;		/* |x| */
+	iy = hy & 0x7fffffff;		/* |y| */
+
+	if (((ix >= 0x7ff00000) && ((ix - 0x7ff00000) | lx) != 0) ||   /* x is nan */
+		((iy >= 0x7ff00000) && ((iy - 0x7ff00000) | ly) != 0)) {    /* y is nan */
+		return x + y;
 	}
-	if(hx>=0) {				/* x > 0 */
-	    if(hx>hy||((hx==hy)&&(lx>ly))) {	/* x > y, x -= ulp */
-		if(lx==0) hx -= 1;
-		lx -= 1;
-	    } else {				/* x < y, x += ulp */
-		lx += 1;
-		if(lx==0) hx += 1;
-	    }
-	} else {				/* x < 0 */
-	    if(hy>=0||hx>hy||((hx==hy)&&(lx>ly))){/* x < y, x -= ulp */
-		if(lx==0) hx -= 1;
-		lx -= 1;
-	    } else {				/* x > y, x += ulp */
-		lx += 1;
-		if(lx==0) hx += 1;
-	    }
+
+	if (x == y) {
+		return y;		/* x=y, return y */
 	}
-	hy = hx&0x7ff00000;
-	if(hy>=0x7ff00000) return x+x;	/* overflow  */
-	if(hy<0x00100000) {		/* underflow */
-	    t = x*x;
-	    if(t!=x) {		/* raise underflow flag */
-	        INSERT_WORDS(y,hx,lx);
-		return y;
-	    }
+
+	if ((ix | lx) == 0) {			/* x == 0 */
+		do {
+			ieee_double_shape_type iw_u; 
+			iw_u.parts.msw = (hy & 0x80000000); 
+			iw_u.parts.lsw = (1); 
+			(x) = iw_u.value;
+		} while (0);	/* return +-minsubnormal */
+
+		t = x * x;
+
+		if (t == x) {
+			return t;
+		}
+		else {
+			return x;	/* raise underflow flag */
+		}
 	}
-	INSERT_WORDS(x,hx,lx);
+
+	if (hx >= 0) {				/* x > 0 */
+		if (hx > hy || ((hx == hy) && (lx > ly))) {	/* x > y, x -= ulp */
+			if (lx == 0) {
+				hx -= 1;
+			}
+
+			lx -= 1;
+		}
+		else {				/* x < y, x += ulp */
+			lx += 1;
+			
+			if (lx == 0) {
+				hx += 1;
+			}
+		}
+	}
+	else {				/* x < 0 */
+		if (hy >= 0 || hx > hy || ((hx == hy) && (lx > ly))) {/* x < y, x -= ulp */
+			if (lx == 0) {
+				hx -= 1;
+			}
+
+			lx -= 1;
+		}
+		else {				/* x > y, x += ulp */
+			lx += 1;
+			
+			if (lx == 0) {
+				hx += 1;
+			}
+		}
+	}
+	hy = hx & 0x7ff00000;
+
+	if (hy >= 0x7ff00000) {
+		return x + x;	/* overflow  */
+	}
+
+	if (hy < 0x00100000) {		/* underflow */
+		t = x * x;
+		
+		if (t != x) {		/* raise underflow flag */
+			do {
+				ieee_double_shape_type iw_u; 
+				iw_u.parts.msw = (hx); 
+				iw_u.parts.lsw = (lx); 
+				(y) = iw_u.value;
+			} while (0);
+
+			return y;
+		}
+	}
+
+	do {
+		ieee_double_shape_type iw_u; 
+		iw_u.parts.msw = (hx); 
+		iw_u.parts.lsw = (lx); 
+		(x) = iw_u.value;
+	} while (0);
+
 	return x;
 }
 

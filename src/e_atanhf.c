@@ -29,6 +29,7 @@ __ieee754_atanhf(float x)
 {
 	float t;
 	int32_t hx, ix;
+
 	do {
 		ieee_float_shape_type gf_u; 
 		gf_u.value = (x); 
